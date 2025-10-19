@@ -13,7 +13,7 @@ A modular e-commerce system built with Spring Boot microservices, API Gateway, E
 | Domain | product-service | 8084 | Product catalog, categories, filtering, admin CRUD |
 | Domain | order-service | 8087 | Cart operations, order lifecycle, admin order management |
 | Domain | analytics-service | 8088 | Aggregated KPIs, sales reports, dashboard stats |
-| Domain | wishlist-service | 8089 | User wishlist collections and items |
+| Domain | wishlist-service | 8086 | User wishlist collections and items |
 | Frontend | Angular App | 4200 | Admin dashboard + customer UI |
 
 Databases (MySQL 8):
