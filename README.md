@@ -281,7 +281,7 @@ Then access: `http://localhost:{port}/swagger-ui.html`
 | Product Swagger | http://localhost:8084/swagger-ui.html |
 | Order Swagger | http://localhost:8087/swagger-ui.html |
 | Analytics Swagger | http://localhost:8088/swagger-ui.html |
-| Wishlist Swagger | http://localhost:8089/swagger-ui.html |
+| Wishlist Swagger | http://localhost:8086/swagger-ui.html |
 
 
 ---
