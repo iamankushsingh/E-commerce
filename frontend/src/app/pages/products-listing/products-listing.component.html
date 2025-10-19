@@ -1,0 +1,95 @@
+<div class="layout product-listing-layout">
+	<!-- Mobile Filter Toggle -->
+	<div class="mobile-filter-toggle" onclick="document.querySelector('.filters-sidebar').classList.toggle('mobile-open')">
+		<button class="filter-toggle-btn">
+			<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"></polygon>
+			</svg>
+			<span>Filters</span>
+		</button>
+	</div>
+
+	<!-- Fixed Filters Sidebar -->
+	<aside class="filters-sidebar">
+		<div class="filters-content">
+			<div class="filters-header">
+				<h3>Filters</h3>
+				<button class="close-filters" onclick="document.querySelector('.filters-sidebar').classList.remove('mobile-open')">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<line x1="18" y1="6" x2="6" y2="18"></line>
+						<line x1="6" y1="6" x2="18" y2="18"></line>
+					</svg>
+				</button>
+			</div>
+			<div class="filters-grid">
+				<div class="filter-group">
+					<label for="search">Search</label>
+					<input id="search" type="text" [(ngModel)]="filters.search" placeholder="Search products..." (input)="onSearchChange($event.target.value)" />
+				</div>
+				<div class="filter-group">
+					<label for="category">Category</label>
+					<select id="category" [(ngModel)]="filters.category" (change)="applyNonSearchFilters()">
+						<option value="">All Categories</option>
+						<option value="Electronics">Electronics</option>
+						<option value="Clothing">Clothing</option>
+						<option value="Home & Garden">Home & Garden</option>
+						<option value="Food & Beverage">Food & Beverage</option>
+						<option value="Sports & Outdoors">Sports & Outdoors</option>
+						<option value="Books">Books</option>
+						<option value="Health & Beauty">Health & Beauty</option>
+					</select>
+				</div>
+				<div class="filter-group">
+					<label for="minPrice">Min Price</label>
+					<input id="minPrice" type="number" [(ngModel)]="filters.minPrice" placeholder="0" (input)="applyNonSearchFilters()" />
+				</div>
+				<div class="filter-group">
+					<label for="maxPrice">Max Price</label>
+					<input id="maxPrice" type="number" [(ngModel)]="filters.maxPrice" placeholder="1000" (input)="applyNonSearchFilters()" />
+				</div>
+				<div class="filter-actions">
+					<button class="clear-btn" (click)="clearFilters()">Clear Filters</button>
+				</div>
+			</div>
+		</div>
+	</aside>
+
+	<!-- Scrollable Product Listing -->
+	<main class="content-area">
+		<div class="scrollable-content">
+			<div class="grid">
+				<app-product-card-listing
+					*ngFor="let p of displayed()"
+					[product]="p"
+					(addToCart)="onAddToCart($event)"
+					(addToWishlist)="onAddToWishlist($event)"
+				></app-product-card-listing>
+			</div>
+			
+			<!-- Pagination Controls -->
+			<div class="pagination" *ngIf="totalPages() > 1">
+				<button 
+					class="pagination-btn" 
+					[disabled]="currentPage() <= 1" 
+					(click)="goToPage(currentPage() - 1)">
+					Previous
+				</button>
+				
+				<button 
+					*ngFor="let page of getPageNumbers()" 
+					class="pagination-btn" 
+					[class.active]="page === currentPage()" 
+					(click)="goToPage(page)">
+					{{ page }}
+				</button>
+				
+				<button 
+					class="pagination-btn" 
+					[disabled]="currentPage() >= totalPages()" 
+					(click)="goToPage(currentPage() + 1)">
+					Next
+				</button>
+			</div>
+		</div>
+	</main>
+</div> 

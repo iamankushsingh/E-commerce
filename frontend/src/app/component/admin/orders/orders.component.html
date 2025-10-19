@@ -1,0 +1,241 @@
+<div class="orders">
+  <div class="orders-header">
+    <div class="header-content">
+      <h1>Order Management</h1>
+      <p>Track and manage customer orders</p>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-section">
+    <h3>Filters</h3>
+    <div class="filters-grid">
+      <div class="filter-group">
+        <label for="search">Search</label>
+        <input
+          id="search"
+          type="text"
+          [value]="filters.search || ''"
+          placeholder="Search orders..."
+          (input)="onSearchChange($event.target.value)"
+        />
+      </div>
+
+      <div class="filter-group">
+        <label for="status">Status</label>
+        <select id="status" [(ngModel)]="filters.status" (change)="applyNonSearchFilters()">
+          <option value="">All Status</option>
+          <option value="PENDING">Pending</option>
+          <option value="CONFIRMED">Confirmed</option>
+          <option value="PROCESSING">Processing</option>
+          <option value="SHIPPED">Shipped</option>
+          <option value="DELIVERED">Delivered</option>
+          <option value="CANCELLED">Cancelled</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="dateFrom">From Date</label>
+        <input
+          id="dateFrom"
+          type="date"
+          [(ngModel)]="filters.dateFrom"
+          (change)="applyNonSearchFilters()"
+        />
+      </div>
+
+      <div class="filter-group">
+        <label for="dateTo">To Date</label>
+        <input
+          id="dateTo"
+          type="date"
+          [(ngModel)]="filters.dateTo"
+          (change)="applyNonSearchFilters()"
+        />
+      </div>
+
+      <div class="filter-actions">
+        <button class="clear-btn" (click)="clearFilters()">Clear Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading orders...</p>
+  </div>
+
+  <!-- Orders Table -->
+  <div *ngIf="!loading" class="orders-table-container">
+    <div class="orders-table">
+      <!-- Table Header -->
+      <div class="table-header">
+        <div class="col">Order ID</div>
+        <div class="col">Customer</div>
+        <div class="col">Total</div>
+        <div class="col">Status</div>
+        <div class="col">Date</div>
+        <div class="col">Actions</div>
+      </div>
+
+      <!-- Table Rows -->
+      <div *ngFor="let order of filteredOrders" class="table-row">
+        <div class="col">
+          <span class="order-id">{{ order.orderNumber || order.id }}</span>
+        </div>
+
+        <div class="col">
+          <div class="customer-info">
+            <div class="customer-name">{{ order.customerName || 'Customer #' + order.userId }}</div>
+            <div class="customer-email">{{ order.customerEmail || order.email || 'N/A' }}</div>
+          </div>
+        </div>
+
+        <div class="col">
+          <span class="total-amount">Rs {{ order.finalAmount || order.totalAmount | number:'1.2-2' }}</span>
+        </div>
+
+        <div class="col">
+          <span class="status-badge" [style.background-color]="getStatusColor(order.orderStatus || order.status)">
+            {{ getStatusDisplayText(order.orderStatus || order.status) }}
+          </span>
+        </div>
+
+        <div class="col">
+          <span class="date">{{ formatDate(order.createdAt || order.orderDate || '2024-01-01') }}</span>
+        </div>
+
+        <div class="col">
+          <div class="action-buttons">
+            <button
+              class="view-btn"
+              (click)="viewOrderDetails(order)"
+              title="View Details"
+            >
+              👁️
+            </button>
+            <button
+              *ngIf="canAdvanceStatus(order.orderStatus || order.status)"
+              class="advance-btn"
+              (click)="updateOrderStatus(order.id, getNextStatus(order.orderStatus || order.status)!)"
+              [disabled]="updatingStatus"
+              title="Advance Status"
+            >
+              ⏭️
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && filteredOrders.length === 0" class="empty-state">
+    <div class="empty-icon">📋</div>
+    <h3>No orders found</h3>
+    <p>Try adjusting your filters to find orders.</p>
+  </div>
+</div>
+
+<!-- Order Details Modal -->
+<div *ngIf="showOrderDetails && selectedOrder" class="modal-overlay" (click)="closeOrderDetails()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Order Details - {{ selectedOrder.orderNumber || selectedOrder.id }}</h3>
+      <button class="close-btn" (click)="closeOrderDetails()" title="Close Modal">✕</button>
+    </div>
+    
+    <div class="modal-body">
+      <!-- Order Status -->
+      <div class="detail-section">
+        <h4>Order Status</h4>
+        <div class="status-controls">
+          <span class="status-badge large" [style.background-color]="getStatusColor(selectedOrder.orderStatus || selectedOrder.status || 'PENDING')">
+            {{ getStatusDisplayText(selectedOrder.orderStatus || selectedOrder.status || 'PENDING') }}
+          </span>
+          <div class="status-actions" *ngIf="canAdvanceStatus(selectedOrder.orderStatus || selectedOrder.status || 'PENDING')">
+            <button
+              class="advance-status-btn"
+              (click)="updateOrderStatus(selectedOrder.id, getNextStatus(selectedOrder.orderStatus || selectedOrder.status || 'PENDING')!)"
+              [disabled]="updatingStatus"
+              title="Advance order to next status"
+            >
+              <span *ngIf="updatingStatus" class="spinner-small"></span>
+              {{ updatingStatus ? 'Updating...' : 'Mark as ' + getStatusDisplayText(getNextStatus(selectedOrder.orderStatus || selectedOrder.status || 'PENDING') || 'PENDING') }}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer Information -->
+      <div class="detail-section">
+        <h4>Customer Information</h4>
+        <div class="detail-grid">
+          <div class="detail-item">
+            <span class="label">Name:</span>
+            <span class="value">{{ selectedOrder.customerName || 'N/A' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Email:</span>
+            <span class="value">{{ selectedOrder.customerEmail || selectedOrder.email || 'N/A' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">User ID:</span>
+            <span class="value">{{ selectedOrder.userId || 'N/A' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Order Date:</span>
+            <span class="value">{{ formatDate(selectedOrder.createdAt || selectedOrder.orderDate) }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Items -->
+      <div class="detail-section">
+        <h4>Order Items</h4>
+        <div class="items-list">
+          <div *ngFor="let item of selectedOrder.items" class="item-row">
+            <div class="item-info">
+              <span class="item-name">{{ item.productName || item.name || 'Unknown Product' }}</span>
+              <span class="item-quantity">Qty: {{ item.quantity || 0 }}</span>
+            </div>
+            <div class="item-pricing">
+              <span class="item-price">Rs {{ (item.unitPrice || item.price || 0) | number:'1.2-2' }} each</span>
+              <span class="item-total">Rs {{ (item.totalPrice || item.total || 0) | number:'1.2-2' }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="order-total">
+          <div class="total-breakdown">
+            <div class="subtotal-line">
+              <span>Subtotal: Rs {{ (selectedOrder.totalAmount || 0) | number:'1.2-2' }}</span>
+            </div>
+            <div class="final-total-line">
+              <strong>Final Total: Rs {{ (selectedOrder.finalAmount || selectedOrder.totalAmount || 0) | number:'1.2-2' }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shipping Information -->
+      <div class="detail-section">
+        <h4>Shipping Information</h4>
+        <div class="detail-grid">
+          <div class="detail-item full-width">
+            <span class="label">Address:</span>
+            <span class="value">{{ formatAddress(selectedOrder.shippingAddress) }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Payment Method:</span>
+            <span class="value">{{ selectedOrder.paymentMethod || 'N/A' }}</span>
+          </div>
+          <div class="detail-item" *ngIf="selectedOrder.trackingNumber">
+            <span class="label">Tracking Number:</span>
+            <span class="value tracking">{{ selectedOrder.trackingNumber }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

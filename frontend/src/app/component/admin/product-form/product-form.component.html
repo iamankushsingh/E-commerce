@@ -1,0 +1,167 @@
+<div class="product-form">
+  <div class="form-header">
+    <div class="header-content">
+      <h1>{{ isEditMode ? 'Edit Product' : 'Add New Product' }}</h1>
+      <p>{{ isEditMode ? 'Update product information' : 'Add a new product to your catalog' }}</p>
+    </div>
+    <button class="back-btn" (click)="onCancel()">
+      <span class="btn-icon">←</span>
+      Back to Products
+    </button>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading product data...</p>
+  </div>
+
+  <div *ngIf="!loading" class="form-container">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form-content">
+      <!-- Product Name -->
+      <div class="form-group">
+        <label for="name">Product Name *</label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="Enter product name"
+          [class.error]="productForm.get('name')?.invalid && productForm.get('name')?.touched"
+        />
+        <div class="error-message" *ngIf="getFieldError('name')">
+          {{ getFieldError('name') }}
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description">Description *</label>
+        <textarea
+          id="description"
+          formControlName="description"
+          placeholder="Enter product description"
+          rows="4"
+          [class.error]="productForm.get('description')?.invalid && productForm.get('description')?.touched"
+        ></textarea>
+        <div class="error-message" *ngIf="getFieldError('description')">
+          {{ getFieldError('description') }}
+        </div>
+      </div>
+
+      <!-- Price and Category -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="price">Price * (Rs)</label>
+          <input
+            id="price"
+            type="number"
+            step="0.1"
+            min="0"
+            formControlName="price"
+            placeholder="Enter price in Rs"
+            [class.error]="productForm.get('price')?.invalid && productForm.get('price')?.touched"
+          />
+          <div class="error-message" *ngIf="getFieldError('price')">
+            {{ getFieldError('price') }}
+          </div>
+          <div class="price-hint">
+            Enter product price in Rs (Indian Rupees)
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="category">Category *</label>
+          <select
+            id="category"
+            formControlName="category"
+            [class.error]="productForm.get('category')?.invalid && productForm.get('category')?.touched"
+          >
+            <option value="">Select a category</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Home & Garden">Home & Garden</option>
+            <option value="Food & Beverage">Food & Beverage</option>
+            <option value="Sports & Outdoors">Sports & Outdoors</option>
+            <option value="Books">Books</option>
+            <option value="Health & Beauty">Health & Beauty</option>
+          </select>
+          <div class="error-message" *ngIf="getFieldError('category')">
+            {{ getFieldError('category') }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Image URL -->
+      <div class="form-group">
+        <label for="imageUrl">Image URL *</label>
+        <input
+          id="imageUrl"
+          type="url"
+          formControlName="imageUrl"
+          placeholder="https://example.com/image.jpg"
+          [class.error]="productForm.get('imageUrl')?.invalid && productForm.get('imageUrl')?.touched"
+        />
+        <div class="error-message" *ngIf="getFieldError('imageUrl')">
+          {{ getFieldError('imageUrl') }}
+        </div>
+        
+        <!-- Image Preview -->
+        <div *ngIf="productForm.get('imageUrl')?.value && productForm.get('imageUrl')?.valid" class="image-preview">
+          <img [src]="productForm.get('imageUrl')?.value" alt="Product preview" />
+        </div>
+      </div>
+
+      <!-- Stock and Status -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="stock">Stock Quantity *</label>
+          <input
+            id="stock"
+            type="number"
+            min="0"
+            formControlName="stock"
+            placeholder="0"
+            [class.error]="productForm.get('stock')?.invalid && productForm.get('stock')?.touched"
+          />
+          <div class="error-message" *ngIf="getFieldError('stock')">
+            {{ getFieldError('stock') }}
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status *</label>
+          <select
+            id="status"
+            formControlName="status"
+            [class.error]="productForm.get('status')?.invalid && productForm.get('status')?.touched"
+          >
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+          <div class="error-message" *ngIf="getFieldError('status')">
+            {{ getFieldError('status') }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Actions -->
+      <div class="form-actions">
+        <button
+          type="button"
+          class="cancel-btn"
+          (click)="onCancel()"
+          [disabled]="saving"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          class="save-btn"
+          [disabled]="productForm.invalid || saving"
+        >
+          <span *ngIf="saving" class="spinner-small"></span>
+          {{ saving ? 'Saving...' : (isEditMode ? 'Update Product' : 'Create Product') }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

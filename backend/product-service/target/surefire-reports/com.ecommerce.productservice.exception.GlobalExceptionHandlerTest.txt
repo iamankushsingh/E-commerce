@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.ecommerce.productservice.exception.GlobalExceptionHandlerTest
+-------------------------------------------------------------------------------
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.239 s -- in com.ecommerce.productservice.exception.GlobalExceptionHandlerTest

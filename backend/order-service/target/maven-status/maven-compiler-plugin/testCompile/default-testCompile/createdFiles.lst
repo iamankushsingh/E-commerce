@@ -1,0 +1,15 @@
+com\ecommerce\orderservice\service\OrderServiceTest.class
+com\ecommerce\orderservice\repository\RepositoryTest.class
+com\ecommerce\orderservice\controller\AdminOrderControllerTest.class
+com\ecommerce\orderservice\controller\OrderControllerTest.class
+com\ecommerce\orderservice\dto\DTOTest.class
+com\ecommerce\orderservice\entity\OrderItemTest.class
+com\ecommerce\orderservice\entity\CartTest.class
+com\ecommerce\orderservice\service\ProductServiceClientTest.class
+com\ecommerce\orderservice\entity\EnumTest.class
+com\ecommerce\orderservice\controller\CartControllerTest.class
+com\ecommerce\orderservice\entity\OrderTest.class
+com\ecommerce\orderservice\entity\CartItemTest.class
+com\ecommerce\orderservice\service\CartServiceTest.class
+com\ecommerce\orderservice\config\ConfigTest.class
+com\ecommerce\orderservice\exception\GlobalExceptionHandlerTest.class

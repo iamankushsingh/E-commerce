@@ -1,0 +1,163 @@
+<div class="dashboard">
+  <div class="dashboard-header">
+    <div class="header-content">
+      <h1>Sales Dashboard</h1>
+      <p>Real-time analytics and business performance insights</p>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading real-time analytics data...</p>
+  </div>
+
+  <div *ngIf="!loading && salesReport" class="dashboard-content">
+    <!-- Metrics Section -->
+    <div class="metrics-grid" *ngIf="!loading && salesReport">
+      <div class="metric-card revenue">
+        <div class="metric-header">
+          <span class="metric-title">Total Revenue</span>
+          <span class="metric-icon">💰</span>
+        </div>
+        <div class="metric-value">
+          <span class="currency">Rs</span>
+          <span class="amount">{{ salesReport.totalRevenue | number:'1.2-2' }}</span>
+        </div>
+        <p class="metric-description">Total sales revenue</p>
+      </div>
+
+      <div class="metric-card orders">
+        <div class="metric-header">
+          <span class="metric-title">Total Orders</span>
+          <span class="metric-icon">📦</span>
+        </div>
+        <div class="metric-value">
+          <span class="amount">{{ salesReport.totalOrders | number:'1.0-0' }}</span>
+        </div>
+        <p class="metric-description">Orders processed</p>
+      </div>
+
+      <div class="metric-card average">
+        <div class="metric-header">
+          <span class="metric-title">Average Order</span>
+          <span class="metric-icon">📊</span>
+        </div>
+        <div class="metric-value">
+          <span class="currency">Rs</span>
+          <span class="amount">{{ salesReport.averageOrderValue | number:'1.2-2' }}</span>
+        </div>
+        <p class="metric-description">Per order value</p>
+      </div>
+
+      <div class="metric-card products">
+        <div class="metric-header">
+          <span class="metric-title">Top Products</span>
+          <span class="metric-icon">🏆</span>
+        </div>
+        <div class="metric-value">
+          <span class="amount">{{ getTopProductsCount() }}</span>
+        </div>
+        <p class="metric-description">Best performers</p>
+      </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="charts-grid" *ngIf="!loading && salesReport">
+      <!-- Revenue Chart -->
+      <div class="chart-card">
+        <h3>Monthly Revenue Trends</h3>
+        <div class="revenue-chart">
+          <div class="chart-container" *ngIf="salesReport.revenueByMonth && salesReport.revenueByMonth.length > 0">
+            <div
+              *ngFor="let item of salesReport.revenueByMonth"
+              class="chart-bar"
+              [style.height.%]="getBarHeight(item.revenue)"
+              [title]="item.month + ': Rs ' + (item.revenue | number:'1.2-2') + ' (' + item.orders + ' orders)'"
+            >
+              <span class="bar-label">{{ item.month }}</span>
+              <span class="bar-value">Rs {{ item.revenue | number:'1.0-0' }}</span>
+            </div>
+          </div>
+          <div *ngIf="!salesReport.revenueByMonth || salesReport.revenueByMonth.length === 0" class="no-data">
+            <p style="color: #94a3b8; text-align: center; padding: 2rem;">No revenue data available</p>
+          </div>
+          <div class="chart-legend">
+            <div class="legend-item">
+              <span class="legend-dot"></span>
+              <span class="legend-text">Monthly Revenue</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Status Distribution -->
+      <div class="chart-card">
+        <h3>Order Status Distribution</h3>
+        <div class="order-status">
+          <div class="status-grid" *ngIf="salesReport.ordersByStatus && salesReport.ordersByStatus.length > 0">
+            <div 
+              *ngFor="let status of salesReport.ordersByStatus" 
+              class="status-item"
+              [class]="'status-' + status.status.toLowerCase()"
+            >
+              <span class="status-label">{{ status.status | titlecase }}</span>
+              <div class="status-count">
+                <span class="count-badge">{{ status.count }}</span>
+                <span class="percentage">({{ status.percentage | number:'1.1-1' }}%)</span>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!salesReport.ordersByStatus || salesReport.ordersByStatus.length === 0" class="no-data">
+            <p style="color: #94a3b8; text-align: center; padding: 2rem;">No order status data available</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Products Section -->
+    <div class="top-products" *ngIf="!loading && salesReport">
+      <h3>Top Selling Products</h3>
+      <div class="products-table" *ngIf="salesReport.topProducts && salesReport.topProducts.length > 0">
+        <div class="table-header">
+          <div class="col">Rank</div>
+          <div class="col">Product Name</div>
+          <div class="col">Total Sales</div>
+          <div class="col">Units Sold</div>
+        </div>
+        <div
+          *ngFor="let product of salesReport.topProducts; let i = index"
+          class="table-row"
+        >
+          <div class="rank">#{{ i + 1 }}</div>
+          <div class="product-name">{{ product.productName }}</div>
+                      <div class="sales-amount">
+              <span style="font-size: 0.7rem; opacity: 0.7; margin-right: 0.2rem;">Rs</span>{{ product.totalSales | number:'1.2-2' }}
+            </div>
+          <div class="units-sold">{{ product.unitsSold | number:'1.0-0' }}</div>
+        </div>
+      </div>
+      <div *ngIf="!salesReport.topProducts || salesReport.topProducts.length === 0" class="no-data">
+        <p style="color: #94a3b8; text-align: center; padding: 2rem;">No product sales data available</p>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions" *ngIf="!loading">
+      <h3>Quick Actions</h3>
+      <div class="actions-grid">
+        <a class="action-btn manage-products" routerLink="/admin/products">
+          <span class="btn-icon">🛍️</span>
+          Manage Products
+        </a>
+        <a class="action-btn manage-orders" routerLink="/admin/orders">
+          <span class="btn-icon">📋</span>
+          Manage Orders
+        </a>
+        <a class="action-btn manage-users" routerLink="/admin/users">
+          <span class="btn-icon">👥</span>
+          Manage Users
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

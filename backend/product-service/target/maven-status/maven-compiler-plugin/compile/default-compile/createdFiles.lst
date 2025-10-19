@@ -1,0 +1,14 @@
+com\ecommerce\productservice\service\ProductService.class
+com\ecommerce\productservice\dto\PaginatedResponse.class
+com\ecommerce\productservice\config\OpenApiConfig.class
+com\ecommerce\productservice\config\CorsConfig.class
+com\ecommerce\productservice\entity\Product.class
+com\ecommerce\productservice\dto\ProductCreateDTO.class
+com\ecommerce\productservice\dto\ProductDTO.class
+com\ecommerce\productservice\ProductServiceApplication.class
+com\ecommerce\productservice\entity\ProductStatus.class
+com\ecommerce\productservice\exception\GlobalExceptionHandler.class
+com\ecommerce\productservice\repository\ProductRepository.class
+com\ecommerce\productservice\controller\ProductController.class
+com\ecommerce\productservice\controller\AdminProductController.class
+com\ecommerce\productservice\config\ModelMapperConfig.class

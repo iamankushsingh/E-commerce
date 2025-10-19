@@ -1,0 +1,1094 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="2.963" tests="17" errors="0" skipped="0" failures="3">
+  <properties>
+    <property name="java.specification.version" value="24"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\2432854\OneDrive - Cognizant\Desktop\E-commerce\DE25JFSA003_E-commerce\backend\user-service\target\test-classes;C:\Users\2432854\OneDrive - Cognizant\Desktop\E-commerce\DE25JFSA003_E-commerce\backend\user-service\target\classes;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.2.0\spring-boot-starter-web-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter\3.2.0\spring-boot-starter-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.2.0\spring-boot-starter-logging-3.2.0.jar;C:\Users\2432854\.m2\repository\ch\qos\logback\logback-classic\1.4.11\logback-classic-1.4.11.jar;C:\Users\2432854\.m2\repository\ch\qos\logback\logback-core\1.4.11\logback-core-1.4.11.jar;C:\Users\2432854\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.21.1\log4j-to-slf4j-2.21.1.jar;C:\Users\2432854\.m2\repository\org\apache\logging\log4j\log4j-api\2.21.1\log4j-api-2.21.1.jar;C:\Users\2432854\.m2\repository\org\slf4j\jul-to-slf4j\2.0.9\jul-to-slf4j-2.0.9.jar;C:\Users\2432854\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\2432854\.m2\repository\org\yaml\snakeyaml\2.2\snakeyaml-2.2.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.2.0\spring-boot-starter-json-3.2.0.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.15.3\jackson-datatype-jdk8-2.15.3.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.15.3\jackson-datatype-jsr310-2.15.3.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.15.3\jackson-module-parameter-names-2.15.3.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.2.0\spring-boot-starter-tomcat-3.2.0.jar;C:\Users\2432854\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.16\tomcat-embed-core-10.1.16.jar;C:\Users\2432854\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.16\tomcat-embed-websocket-10.1.16.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-web\6.1.1\spring-web-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-beans\6.1.1\spring-beans-6.1.1.jar;C:\Users\2432854\.m2\repository\io\micrometer\micrometer-observation\1.12.0\micrometer-observation-1.12.0.jar;C:\Users\2432854\.m2\repository\io\micrometer\micrometer-commons\1.12.0\micrometer-commons-1.12.0.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-webmvc\6.1.1\spring-webmvc-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-context\6.1.1\spring-context-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-expression\6.1.1\spring-expression-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\3.2.0\spring-boot-starter-data-jpa-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-aop\3.2.0\spring-boot-starter-aop-3.2.0.jar;C:\Users\2432854\.m2\repository\org\aspectj\aspectjweaver\1.9.20.1\aspectjweaver-1.9.20.1.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\3.2.0\spring-boot-starter-jdbc-3.2.0.jar;C:\Users\2432854\.m2\repository\com\zaxxer\HikariCP\5.0.1\HikariCP-5.0.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-jdbc\6.1.1\spring-jdbc-6.1.1.jar;C:\Users\2432854\.m2\repository\org\hibernate\orm\hibernate-core\6.3.1.Final\hibernate-core-6.3.1.Final.jar;C:\Users\2432854\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\2432854\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar;C:\Users\2432854\.m2\repository\org\jboss\logging\jboss-logging\3.5.3.Final\jboss-logging-3.5.3.Final.jar;C:\Users\2432854\.m2\repository\org\hibernate\common\hibernate-commons-annotations\6.0.6.Final\hibernate-commons-annotations-6.0.6.Final.jar;C:\Users\2432854\.m2\repository\io\smallrye\jandex\3.1.2\jandex-3.1.2.jar;C:\Users\2432854\.m2\repository\com\fasterxml\classmate\1.6.0\classmate-1.6.0.jar;C:\Users\2432854\.m2\repository\org\glassfish\jaxb\jaxb-runtime\4.0.4\jaxb-runtime-4.0.4.jar;C:\Users\2432854\.m2\repository\org\glassfish\jaxb\jaxb-core\4.0.4\jaxb-core-4.0.4.jar;C:\Users\2432854\.m2\repository\org\eclipse\angus\angus-activation\2.0.1\angus-activation-2.0.1.jar;C:\Users\2432854\.m2\repository\org\glassfish\jaxb\txw2\4.0.4\txw2-4.0.4.jar;C:\Users\2432854\.m2\repository\com\sun\istack\istack-commons-runtime\4.1.2\istack-commons-runtime-4.1.2.jar;C:\Users\2432854\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.1\jakarta.inject-api-2.0.1.jar;C:\Users\2432854\.m2\repository\org\antlr\antlr4-runtime\4.10.1\antlr4-runtime-4.10.1.jar;C:\Users\2432854\.m2\repository\org\springframework\data\spring-data-jpa\3.2.0\spring-data-jpa-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\data\spring-data-commons\3.2.0\spring-data-commons-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-orm\6.1.1\spring-orm-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-tx\6.1.1\spring-tx-6.1.1.jar;C:\Users\2432854\.m2\repository\org\slf4j\slf4j-api\2.0.9\slf4j-api-2.0.9.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-aspects\6.1.1\spring-aspects-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-validation\3.2.0\spring-boot-starter-validation-3.2.0.jar;C:\Users\2432854\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.16\tomcat-embed-el-10.1.16.jar;C:\Users\2432854\.m2\repository\org\hibernate\validator\hibernate-validator\8.0.1.Final\hibernate-validator-8.0.1.Final.jar;C:\Users\2432854\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-security\3.2.0\spring-boot-starter-security-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-aop\6.1.1\spring-aop-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\security\spring-security-config\6.2.0\spring-security-config-6.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\security\spring-security-web\6.2.0\spring-security-web-6.2.0.jar;C:\Users\2432854\.m2\repository\com\mysql\mysql-connector-j\8.0.33\mysql-connector-j-8.0.33.jar;C:\Users\2432854\.m2\repository\org\modelmapper\modelmapper\3.1.1\modelmapper-3.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-starter-netflix-eureka-client\4.1.1\spring-cloud-starter-netflix-eureka-client-4.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-starter\4.1.2\spring-cloud-starter-4.1.2.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-context\4.1.2\spring-cloud-context-4.1.2.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-commons\4.1.2\spring-cloud-commons-4.1.2.jar;C:\Users\2432854\.m2\repository\org\springframework\security\spring-security-rsa\1.1.2\spring-security-rsa-1.1.2.jar;C:\Users\2432854\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.77\bcprov-jdk18on-1.77.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-netflix-eureka-client\4.1.1\spring-cloud-netflix-eureka-client-4.1.1.jar;C:\Users\2432854\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.2.1\httpclient5-5.2.1.jar;C:\Users\2432854\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.2.3\httpcore5-5.2.3.jar;C:\Users\2432854\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.2.3\httpcore5-h2-5.2.3.jar;C:\Users\2432854\.m2\repository\com\netflix\eureka\eureka-client\2.0.2\eureka-client-2.0.2.jar;C:\Users\2432854\.m2\repository\com\netflix\netflix-commons\netflix-eventbus\0.3.0\netflix-eventbus-0.3.0.jar;C:\Users\2432854\.m2\repository\com\netflix\netflix-commons\netflix-infix\0.3.0\netflix-infix-0.3.0.jar;C:\Users\2432854\.m2\repository\commons-jxpath\commons-jxpath\1.3\commons-jxpath-1.3.jar;C:\Users\2432854\.m2\repository\joda-time\joda-time\2.3\joda-time-2.3.jar;C:\Users\2432854\.m2\repository\org\antlr\antlr-runtime\3.4\antlr-runtime-3.4.jar;C:\Users\2432854\.m2\repository\org\antlr\stringtemplate\3.2.1\stringtemplate-3.2.1.jar;C:\Users\2432854\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\2432854\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\2432854\.m2\repository\org\apache\commons\commons-math\2.2\commons-math-2.2.jar;C:\Users\2432854\.m2\repository\com\thoughtworks\xstream\xstream\1.4.19\xstream-1.4.19.jar;C:\Users\2432854\.m2\repository\io\github\x-stream\mxparser\1.2.2\mxparser-1.2.2.jar;C:\Users\2432854\.m2\repository\xmlpull\xmlpull\1.1.3.1\xmlpull-1.1.3.1.jar;C:\Users\2432854\.m2\repository\jakarta\ws\rs\jakarta.ws.rs-api\3.1.0\jakarta.ws.rs-api-3.1.0.jar;C:\Users\2432854\.m2\repository\com\netflix\servo\servo-core\0.12.21\servo-core-0.12.21.jar;C:\Users\2432854\.m2\repository\com\google\guava\guava\19.0\guava-19.0.jar;C:\Users\2432854\.m2\repository\org\apache\httpcomponents\httpclient\4.5.3\httpclient-4.5.3.jar;C:\Users\2432854\.m2\repository\org\apache\httpcomponents\httpcore\4.4.16\httpcore-4.4.16.jar;C:\Users\2432854\.m2\repository\commons-codec\commons-codec\1.16.0\commons-codec-1.16.0.jar;C:\Users\2432854\.m2\repository\commons-configuration\commons-configuration\1.10\commons-configuration-1.10.jar;C:\Users\2432854\.m2\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.15.3\jackson-annotations-2.15.3.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.15.3\jackson-core-2.15.3.jar;C:\Users\2432854\.m2\repository\org\codehaus\jettison\jettison\1.5.4\jettison-1.5.4.jar;C:\Users\2432854\.m2\repository\com\netflix\eureka\eureka-core\2.0.2\eureka-core-2.0.2.jar;C:\Users\2432854\.m2\repository\com\fasterxml\woodstox\woodstox-core\6.2.1\woodstox-core-6.2.1.jar;C:\Users\2432854\.m2\repository\org\codehaus\woodstox\stax2-api\4.2.1\stax2-api-4.2.1.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-starter-loadbalancer\4.1.2\spring-cloud-starter-loadbalancer-4.1.2.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-loadbalancer\4.1.2\spring-cloud-loadbalancer-4.1.2.jar;C:\Users\2432854\.m2\repository\io\projectreactor\addons\reactor-extra\3.5.1\reactor-extra-3.5.1.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-cache\3.2.0\spring-boot-starter-cache-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-context-support\6.1.1\spring-context-support-6.1.1.jar;C:\Users\2432854\.m2\repository\com\stoyanr\evictor\1.0.0\evictor-1.0.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-webflux\3.2.0\spring-boot-starter-webflux-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-reactor-netty\3.2.0\spring-boot-starter-reactor-netty-3.2.0.jar;C:\Users\2432854\.m2\repository\io\projectreactor\netty\reactor-netty-http\1.1.13\reactor-netty-http-1.1.13.jar;C:\Users\2432854\.m2\repository\io\netty\netty-codec-http\4.1.101.Final\netty-codec-http-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-common\4.1.101.Final\netty-common-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-buffer\4.1.101.Final\netty-buffer-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-transport\4.1.101.Final\netty-transport-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-codec\4.1.101.Final\netty-codec-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-handler\4.1.101.Final\netty-handler-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-codec-http2\4.1.101.Final\netty-codec-http2-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-resolver-dns\4.1.101.Final\netty-resolver-dns-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-resolver\4.1.101.Final\netty-resolver-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-codec-dns\4.1.101.Final\netty-codec-dns-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-resolver-dns-native-macos\4.1.101.Final\netty-resolver-dns-native-macos-4.1.101.Final-osx-x86_64.jar;C:\Users\2432854\.m2\repository\io\netty\netty-resolver-dns-classes-macos\4.1.101.Final\netty-resolver-dns-classes-macos-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-transport-native-epoll\4.1.101.Final\netty-transport-native-epoll-4.1.101.Final-linux-x86_64.jar;C:\Users\2432854\.m2\repository\io\netty\netty-transport-native-unix-common\4.1.101.Final\netty-transport-native-unix-common-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-transport-classes-epoll\4.1.101.Final\netty-transport-classes-epoll-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\projectreactor\netty\reactor-netty-core\1.1.13\reactor-netty-core-1.1.13.jar;C:\Users\2432854\.m2\repository\io\netty\netty-handler-proxy\4.1.101.Final\netty-handler-proxy-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-codec-socks\4.1.101.Final\netty-codec-socks-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-webflux\6.1.1\spring-webflux-6.1.1.jar;C:\Users\2432854\.m2\repository\io\projectreactor\reactor-core\3.6.0\reactor-core-3.6.0.jar;C:\Users\2432854\.m2\repository\org\reactivestreams\reactive-streams\1.0.4\reactive-streams-1.0.4.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-devtools\3.2.0\spring-boot-devtools-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot\3.2.0\spring-boot-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.2.0\spring-boot-autoconfigure-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.2.0\spring-boot-starter-test-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-test\3.2.0\spring-boot-test-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.2.0\spring-boot-test-autoconfigure-3.2.0.jar;C:\Users\2432854\.m2\repository\com\jayway\jsonpath\json-path\2.8.0\json-path-2.8.0.jar;C:\Users\2432854\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.1\jakarta.xml.bind-api-4.0.1.jar;C:\Users\2432854\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.2\jakarta.activation-api-2.1.2.jar;C:\Users\2432854\.m2\repository\net\minidev\json-smart\2.5.0\json-smart-2.5.0.jar;C:\Users\2432854\.m2\repository\net\minidev\accessors-smart\2.5.0\accessors-smart-2.5.0.jar;C:\Users\2432854\.m2\repository\org\ow2\asm\asm\9.3\asm-9.3.jar;C:\Users\2432854\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\2432854\.m2\repository\org\awaitility\awaitility\4.2.0\awaitility-4.2.0.jar;C:\Users\2432854\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\2432854\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\2432854\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\2432854\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\2432854\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\2432854\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\2432854\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\2432854\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\2432854\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;C:\Users\2432854\.m2\repository\org\mockito\mockito-junit-jupiter\5.7.0\mockito-junit-jupiter-5.7.0.jar;C:\Users\2432854\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\2432854\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-core\6.1.1\spring-core-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-jcl\6.1.1\spring-jcl-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-test\6.1.1\spring-test-6.1.1.jar;C:\Users\2432854\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;C:\Users\2432854\.m2\repository\org\springframework\security\spring-security-test\6.2.0\spring-security-test-6.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\security\spring-security-core\6.2.0\spring-security-core-6.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\security\spring-security-crypto\6.2.0\spring-security-crypto-6.2.0.jar;C:\Users\2432854\.m2\repository\org\mockito\mockito-core\5.8.0\mockito-core-5.8.0.jar;C:\Users\2432854\.m2\repository\net\bytebuddy\byte-buddy\1.14.10\byte-buddy-1.14.10.jar;C:\Users\2432854\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.10\byte-buddy-agent-1.14.10.jar;C:\Users\2432854\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\2432854\.m2\repository\org\testcontainers\junit-jupiter\1.19.3\junit-jupiter-1.19.3.jar;C:\Users\2432854\.m2\repository\org\testcontainers\testcontainers\1.19.3\testcontainers-1.19.3.jar;C:\Users\2432854\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\2432854\.m2\repository\org\hamcrest\hamcrest-core\2.2\hamcrest-core-2.2.jar;C:\Users\2432854\.m2\repository\org\apache\commons\commons-compress\1.24.0\commons-compress-1.24.0.jar;C:\Users\2432854\.m2\repository\org\rnorth\duct-tape\duct-tape\1.0.8\duct-tape-1.0.8.jar;C:\Users\2432854\.m2\repository\org\jetbrains\annotations\17.0.0\annotations-17.0.0.jar;C:\Users\2432854\.m2\repository\com\github\docker-java\docker-java-api\3.3.4\docker-java-api-3.3.4.jar;C:\Users\2432854\.m2\repository\com\github\docker-java\docker-java-transport-zerodep\3.3.4\docker-java-transport-zerodep-3.3.4.jar;C:\Users\2432854\.m2\repository\com\github\docker-java\docker-java-transport\3.3.4\docker-java-transport-3.3.4.jar;C:\Users\2432854\.m2\repository\net\java\dev\jna\jna\5.13.0\jna-5.13.0.jar;C:\Users\2432854\.m2\repository\org\testcontainers\mysql\1.19.3\mysql-1.19.3.jar;C:\Users\2432854\.m2\repository\org\testcontainers\jdbc\1.19.3\jdbc-1.19.3.jar;C:\Users\2432854\.m2\repository\org\testcontainers\database-commons\1.19.3\database-commons-1.19.3.jar;C:\Users\2432854\.m2\repository\com\h2database\h2\2.2.224\h2-2.2.224.jar;C:\Users\2432854\.m2\repository\io\jsonwebtoken\jjwt-api\0.12.3\jjwt-api-0.12.3.jar;C:\Users\2432854\.m2\repository\io\jsonwebtoken\jjwt-impl\0.12.3\jjwt-impl-0.12.3.jar;C:\Users\2432854\.m2\repository\io\jsonwebtoken\jjwt-jackson\0.12.3\jjwt-jackson-0.12.3.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.15.3\jackson-databind-2.15.3.jar;C:\Users\2432854\.m2\repository\org\springdoc\springdoc-openapi-starter-webmvc-ui\2.3.0\springdoc-openapi-starter-webmvc-ui-2.3.0.jar;C:\Users\2432854\.m2\repository\org\springdoc\springdoc-openapi-starter-webmvc-api\2.3.0\springdoc-openapi-starter-webmvc-api-2.3.0.jar;C:\Users\2432854\.m2\repository\org\springdoc\springdoc-openapi-starter-common\2.3.0\springdoc-openapi-starter-common-2.3.0.jar;C:\Users\2432854\.m2\repository\io\swagger\core\v3\swagger-core-jakarta\2.2.19\swagger-core-jakarta-2.2.19.jar;C:\Users\2432854\.m2\repository\org\apache\commons\commons-lang3\3.13.0\commons-lang3-3.13.0.jar;C:\Users\2432854\.m2\repository\io\swagger\core\v3\swagger-annotations-jakarta\2.2.19\swagger-annotations-jakarta-2.2.19.jar;C:\Users\2432854\.m2\repository\io\swagger\core\v3\swagger-models-jakarta\2.2.19\swagger-models-jakarta-2.2.19.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\dataformat\jackson-dataformat-yaml\2.15.3\jackson-dataformat-yaml-2.15.3.jar;C:\Users\2432854\.m2\repository\org\webjars\swagger-ui\5.10.3\swagger-ui-5.10.3.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Asia/Calcutta"/>
+    <property name="org.jboss.logging.provider" value="slf4j"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="24"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="IN"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-24\bin"/>
+    <property name="sun.java.command" value="C:\Users\2432854\AppData\Local\Temp\surefire9599648950628388615\surefirebooter-20251009133928104_3.jar C:\Users\2432854\AppData\Local\Temp\surefire9599648950628388615 2025-10-09T13-39-27_056-jvmRun1 surefire-20251009133928104_1tmp surefire_0-20251009133928104_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\2432854\OneDrive - Cognizant\Desktop\E-commerce\DE25JFSA003_E-commerce\backend\user-service\target\test-classes;C:\Users\2432854\OneDrive - Cognizant\Desktop\E-commerce\DE25JFSA003_E-commerce\backend\user-service\target\classes;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-web\3.2.0\spring-boot-starter-web-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter\3.2.0\spring-boot-starter-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-logging\3.2.0\spring-boot-starter-logging-3.2.0.jar;C:\Users\2432854\.m2\repository\ch\qos\logback\logback-classic\1.4.11\logback-classic-1.4.11.jar;C:\Users\2432854\.m2\repository\ch\qos\logback\logback-core\1.4.11\logback-core-1.4.11.jar;C:\Users\2432854\.m2\repository\org\apache\logging\log4j\log4j-to-slf4j\2.21.1\log4j-to-slf4j-2.21.1.jar;C:\Users\2432854\.m2\repository\org\apache\logging\log4j\log4j-api\2.21.1\log4j-api-2.21.1.jar;C:\Users\2432854\.m2\repository\org\slf4j\jul-to-slf4j\2.0.9\jul-to-slf4j-2.0.9.jar;C:\Users\2432854\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.1.1\jakarta.annotation-api-2.1.1.jar;C:\Users\2432854\.m2\repository\org\yaml\snakeyaml\2.2\snakeyaml-2.2.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-json\3.2.0\spring-boot-starter-json-3.2.0.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jdk8\2.15.3\jackson-datatype-jdk8-2.15.3.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\datatype\jackson-datatype-jsr310\2.15.3\jackson-datatype-jsr310-2.15.3.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\module\jackson-module-parameter-names\2.15.3\jackson-module-parameter-names-2.15.3.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-tomcat\3.2.0\spring-boot-starter-tomcat-3.2.0.jar;C:\Users\2432854\.m2\repository\org\apache\tomcat\embed\tomcat-embed-core\10.1.16\tomcat-embed-core-10.1.16.jar;C:\Users\2432854\.m2\repository\org\apache\tomcat\embed\tomcat-embed-websocket\10.1.16\tomcat-embed-websocket-10.1.16.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-web\6.1.1\spring-web-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-beans\6.1.1\spring-beans-6.1.1.jar;C:\Users\2432854\.m2\repository\io\micrometer\micrometer-observation\1.12.0\micrometer-observation-1.12.0.jar;C:\Users\2432854\.m2\repository\io\micrometer\micrometer-commons\1.12.0\micrometer-commons-1.12.0.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-webmvc\6.1.1\spring-webmvc-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-context\6.1.1\spring-context-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-expression\6.1.1\spring-expression-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-data-jpa\3.2.0\spring-boot-starter-data-jpa-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-aop\3.2.0\spring-boot-starter-aop-3.2.0.jar;C:\Users\2432854\.m2\repository\org\aspectj\aspectjweaver\1.9.20.1\aspectjweaver-1.9.20.1.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-jdbc\3.2.0\spring-boot-starter-jdbc-3.2.0.jar;C:\Users\2432854\.m2\repository\com\zaxxer\HikariCP\5.0.1\HikariCP-5.0.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-jdbc\6.1.1\spring-jdbc-6.1.1.jar;C:\Users\2432854\.m2\repository\org\hibernate\orm\hibernate-core\6.3.1.Final\hibernate-core-6.3.1.Final.jar;C:\Users\2432854\.m2\repository\jakarta\persistence\jakarta.persistence-api\3.1.0\jakarta.persistence-api-3.1.0.jar;C:\Users\2432854\.m2\repository\jakarta\transaction\jakarta.transaction-api\2.0.1\jakarta.transaction-api-2.0.1.jar;C:\Users\2432854\.m2\repository\org\jboss\logging\jboss-logging\3.5.3.Final\jboss-logging-3.5.3.Final.jar;C:\Users\2432854\.m2\repository\org\hibernate\common\hibernate-commons-annotations\6.0.6.Final\hibernate-commons-annotations-6.0.6.Final.jar;C:\Users\2432854\.m2\repository\io\smallrye\jandex\3.1.2\jandex-3.1.2.jar;C:\Users\2432854\.m2\repository\com\fasterxml\classmate\1.6.0\classmate-1.6.0.jar;C:\Users\2432854\.m2\repository\org\glassfish\jaxb\jaxb-runtime\4.0.4\jaxb-runtime-4.0.4.jar;C:\Users\2432854\.m2\repository\org\glassfish\jaxb\jaxb-core\4.0.4\jaxb-core-4.0.4.jar;C:\Users\2432854\.m2\repository\org\eclipse\angus\angus-activation\2.0.1\angus-activation-2.0.1.jar;C:\Users\2432854\.m2\repository\org\glassfish\jaxb\txw2\4.0.4\txw2-4.0.4.jar;C:\Users\2432854\.m2\repository\com\sun\istack\istack-commons-runtime\4.1.2\istack-commons-runtime-4.1.2.jar;C:\Users\2432854\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.1\jakarta.inject-api-2.0.1.jar;C:\Users\2432854\.m2\repository\org\antlr\antlr4-runtime\4.10.1\antlr4-runtime-4.10.1.jar;C:\Users\2432854\.m2\repository\org\springframework\data\spring-data-jpa\3.2.0\spring-data-jpa-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\data\spring-data-commons\3.2.0\spring-data-commons-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-orm\6.1.1\spring-orm-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-tx\6.1.1\spring-tx-6.1.1.jar;C:\Users\2432854\.m2\repository\org\slf4j\slf4j-api\2.0.9\slf4j-api-2.0.9.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-aspects\6.1.1\spring-aspects-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-validation\3.2.0\spring-boot-starter-validation-3.2.0.jar;C:\Users\2432854\.m2\repository\org\apache\tomcat\embed\tomcat-embed-el\10.1.16\tomcat-embed-el-10.1.16.jar;C:\Users\2432854\.m2\repository\org\hibernate\validator\hibernate-validator\8.0.1.Final\hibernate-validator-8.0.1.Final.jar;C:\Users\2432854\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.2\jakarta.validation-api-3.0.2.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-security\3.2.0\spring-boot-starter-security-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-aop\6.1.1\spring-aop-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\security\spring-security-config\6.2.0\spring-security-config-6.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\security\spring-security-web\6.2.0\spring-security-web-6.2.0.jar;C:\Users\2432854\.m2\repository\com\mysql\mysql-connector-j\8.0.33\mysql-connector-j-8.0.33.jar;C:\Users\2432854\.m2\repository\org\modelmapper\modelmapper\3.1.1\modelmapper-3.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-starter-netflix-eureka-client\4.1.1\spring-cloud-starter-netflix-eureka-client-4.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-starter\4.1.2\spring-cloud-starter-4.1.2.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-context\4.1.2\spring-cloud-context-4.1.2.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-commons\4.1.2\spring-cloud-commons-4.1.2.jar;C:\Users\2432854\.m2\repository\org\springframework\security\spring-security-rsa\1.1.2\spring-security-rsa-1.1.2.jar;C:\Users\2432854\.m2\repository\org\bouncycastle\bcprov-jdk18on\1.77\bcprov-jdk18on-1.77.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-netflix-eureka-client\4.1.1\spring-cloud-netflix-eureka-client-4.1.1.jar;C:\Users\2432854\.m2\repository\org\apache\httpcomponents\client5\httpclient5\5.2.1\httpclient5-5.2.1.jar;C:\Users\2432854\.m2\repository\org\apache\httpcomponents\core5\httpcore5\5.2.3\httpcore5-5.2.3.jar;C:\Users\2432854\.m2\repository\org\apache\httpcomponents\core5\httpcore5-h2\5.2.3\httpcore5-h2-5.2.3.jar;C:\Users\2432854\.m2\repository\com\netflix\eureka\eureka-client\2.0.2\eureka-client-2.0.2.jar;C:\Users\2432854\.m2\repository\com\netflix\netflix-commons\netflix-eventbus\0.3.0\netflix-eventbus-0.3.0.jar;C:\Users\2432854\.m2\repository\com\netflix\netflix-commons\netflix-infix\0.3.0\netflix-infix-0.3.0.jar;C:\Users\2432854\.m2\repository\commons-jxpath\commons-jxpath\1.3\commons-jxpath-1.3.jar;C:\Users\2432854\.m2\repository\joda-time\joda-time\2.3\joda-time-2.3.jar;C:\Users\2432854\.m2\repository\org\antlr\antlr-runtime\3.4\antlr-runtime-3.4.jar;C:\Users\2432854\.m2\repository\org\antlr\stringtemplate\3.2.1\stringtemplate-3.2.1.jar;C:\Users\2432854\.m2\repository\antlr\antlr\2.7.7\antlr-2.7.7.jar;C:\Users\2432854\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;C:\Users\2432854\.m2\repository\org\apache\commons\commons-math\2.2\commons-math-2.2.jar;C:\Users\2432854\.m2\repository\com\thoughtworks\xstream\xstream\1.4.19\xstream-1.4.19.jar;C:\Users\2432854\.m2\repository\io\github\x-stream\mxparser\1.2.2\mxparser-1.2.2.jar;C:\Users\2432854\.m2\repository\xmlpull\xmlpull\1.1.3.1\xmlpull-1.1.3.1.jar;C:\Users\2432854\.m2\repository\jakarta\ws\rs\jakarta.ws.rs-api\3.1.0\jakarta.ws.rs-api-3.1.0.jar;C:\Users\2432854\.m2\repository\com\netflix\servo\servo-core\0.12.21\servo-core-0.12.21.jar;C:\Users\2432854\.m2\repository\com\google\guava\guava\19.0\guava-19.0.jar;C:\Users\2432854\.m2\repository\org\apache\httpcomponents\httpclient\4.5.3\httpclient-4.5.3.jar;C:\Users\2432854\.m2\repository\org\apache\httpcomponents\httpcore\4.4.16\httpcore-4.4.16.jar;C:\Users\2432854\.m2\repository\commons-codec\commons-codec\1.16.0\commons-codec-1.16.0.jar;C:\Users\2432854\.m2\repository\commons-configuration\commons-configuration\1.10\commons-configuration-1.10.jar;C:\Users\2432854\.m2\repository\commons-lang\commons-lang\2.6\commons-lang-2.6.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.15.3\jackson-annotations-2.15.3.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.15.3\jackson-core-2.15.3.jar;C:\Users\2432854\.m2\repository\org\codehaus\jettison\jettison\1.5.4\jettison-1.5.4.jar;C:\Users\2432854\.m2\repository\com\netflix\eureka\eureka-core\2.0.2\eureka-core-2.0.2.jar;C:\Users\2432854\.m2\repository\com\fasterxml\woodstox\woodstox-core\6.2.1\woodstox-core-6.2.1.jar;C:\Users\2432854\.m2\repository\org\codehaus\woodstox\stax2-api\4.2.1\stax2-api-4.2.1.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-starter-loadbalancer\4.1.2\spring-cloud-starter-loadbalancer-4.1.2.jar;C:\Users\2432854\.m2\repository\org\springframework\cloud\spring-cloud-loadbalancer\4.1.2\spring-cloud-loadbalancer-4.1.2.jar;C:\Users\2432854\.m2\repository\io\projectreactor\addons\reactor-extra\3.5.1\reactor-extra-3.5.1.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-cache\3.2.0\spring-boot-starter-cache-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-context-support\6.1.1\spring-context-support-6.1.1.jar;C:\Users\2432854\.m2\repository\com\stoyanr\evictor\1.0.0\evictor-1.0.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-webflux\3.2.0\spring-boot-starter-webflux-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-reactor-netty\3.2.0\spring-boot-starter-reactor-netty-3.2.0.jar;C:\Users\2432854\.m2\repository\io\projectreactor\netty\reactor-netty-http\1.1.13\reactor-netty-http-1.1.13.jar;C:\Users\2432854\.m2\repository\io\netty\netty-codec-http\4.1.101.Final\netty-codec-http-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-common\4.1.101.Final\netty-common-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-buffer\4.1.101.Final\netty-buffer-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-transport\4.1.101.Final\netty-transport-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-codec\4.1.101.Final\netty-codec-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-handler\4.1.101.Final\netty-handler-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-codec-http2\4.1.101.Final\netty-codec-http2-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-resolver-dns\4.1.101.Final\netty-resolver-dns-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-resolver\4.1.101.Final\netty-resolver-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-codec-dns\4.1.101.Final\netty-codec-dns-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-resolver-dns-native-macos\4.1.101.Final\netty-resolver-dns-native-macos-4.1.101.Final-osx-x86_64.jar;C:\Users\2432854\.m2\repository\io\netty\netty-resolver-dns-classes-macos\4.1.101.Final\netty-resolver-dns-classes-macos-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-transport-native-epoll\4.1.101.Final\netty-transport-native-epoll-4.1.101.Final-linux-x86_64.jar;C:\Users\2432854\.m2\repository\io\netty\netty-transport-native-unix-common\4.1.101.Final\netty-transport-native-unix-common-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-transport-classes-epoll\4.1.101.Final\netty-transport-classes-epoll-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\projectreactor\netty\reactor-netty-core\1.1.13\reactor-netty-core-1.1.13.jar;C:\Users\2432854\.m2\repository\io\netty\netty-handler-proxy\4.1.101.Final\netty-handler-proxy-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\io\netty\netty-codec-socks\4.1.101.Final\netty-codec-socks-4.1.101.Final.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-webflux\6.1.1\spring-webflux-6.1.1.jar;C:\Users\2432854\.m2\repository\io\projectreactor\reactor-core\3.6.0\reactor-core-3.6.0.jar;C:\Users\2432854\.m2\repository\org\reactivestreams\reactive-streams\1.0.4\reactive-streams-1.0.4.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-devtools\3.2.0\spring-boot-devtools-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot\3.2.0\spring-boot-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-autoconfigure\3.2.0\spring-boot-autoconfigure-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-starter-test\3.2.0\spring-boot-starter-test-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-test\3.2.0\spring-boot-test-3.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\boot\spring-boot-test-autoconfigure\3.2.0\spring-boot-test-autoconfigure-3.2.0.jar;C:\Users\2432854\.m2\repository\com\jayway\jsonpath\json-path\2.8.0\json-path-2.8.0.jar;C:\Users\2432854\.m2\repository\jakarta\xml\bind\jakarta.xml.bind-api\4.0.1\jakarta.xml.bind-api-4.0.1.jar;C:\Users\2432854\.m2\repository\jakarta\activation\jakarta.activation-api\2.1.2\jakarta.activation-api-2.1.2.jar;C:\Users\2432854\.m2\repository\net\minidev\json-smart\2.5.0\json-smart-2.5.0.jar;C:\Users\2432854\.m2\repository\net\minidev\accessors-smart\2.5.0\accessors-smart-2.5.0.jar;C:\Users\2432854\.m2\repository\org\ow2\asm\asm\9.3\asm-9.3.jar;C:\Users\2432854\.m2\repository\org\assertj\assertj-core\3.24.2\assertj-core-3.24.2.jar;C:\Users\2432854\.m2\repository\org\awaitility\awaitility\4.2.0\awaitility-4.2.0.jar;C:\Users\2432854\.m2\repository\org\hamcrest\hamcrest\2.2\hamcrest-2.2.jar;C:\Users\2432854\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.1\junit-jupiter-5.10.1.jar;C:\Users\2432854\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.1\junit-jupiter-api-5.10.1.jar;C:\Users\2432854\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\2432854\.m2\repository\org\junit\platform\junit-platform-commons\1.10.1\junit-platform-commons-1.10.1.jar;C:\Users\2432854\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\2432854\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.1\junit-jupiter-params-5.10.1.jar;C:\Users\2432854\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.1\junit-jupiter-engine-5.10.1.jar;C:\Users\2432854\.m2\repository\org\junit\platform\junit-platform-engine\1.10.1\junit-platform-engine-1.10.1.jar;C:\Users\2432854\.m2\repository\org\mockito\mockito-junit-jupiter\5.7.0\mockito-junit-jupiter-5.7.0.jar;C:\Users\2432854\.m2\repository\org\skyscreamer\jsonassert\1.5.1\jsonassert-1.5.1.jar;C:\Users\2432854\.m2\repository\com\vaadin\external\google\android-json\0.0.20131108.vaadin1\android-json-0.0.20131108.vaadin1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-core\6.1.1\spring-core-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-jcl\6.1.1\spring-jcl-6.1.1.jar;C:\Users\2432854\.m2\repository\org\springframework\spring-test\6.1.1\spring-test-6.1.1.jar;C:\Users\2432854\.m2\repository\org\xmlunit\xmlunit-core\2.9.1\xmlunit-core-2.9.1.jar;C:\Users\2432854\.m2\repository\org\springframework\security\spring-security-test\6.2.0\spring-security-test-6.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\security\spring-security-core\6.2.0\spring-security-core-6.2.0.jar;C:\Users\2432854\.m2\repository\org\springframework\security\spring-security-crypto\6.2.0\spring-security-crypto-6.2.0.jar;C:\Users\2432854\.m2\repository\org\mockito\mockito-core\5.8.0\mockito-core-5.8.0.jar;C:\Users\2432854\.m2\repository\net\bytebuddy\byte-buddy\1.14.10\byte-buddy-1.14.10.jar;C:\Users\2432854\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.10\byte-buddy-agent-1.14.10.jar;C:\Users\2432854\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\2432854\.m2\repository\org\testcontainers\junit-jupiter\1.19.3\junit-jupiter-1.19.3.jar;C:\Users\2432854\.m2\repository\org\testcontainers\testcontainers\1.19.3\testcontainers-1.19.3.jar;C:\Users\2432854\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\2432854\.m2\repository\org\hamcrest\hamcrest-core\2.2\hamcrest-core-2.2.jar;C:\Users\2432854\.m2\repository\org\apache\commons\commons-compress\1.24.0\commons-compress-1.24.0.jar;C:\Users\2432854\.m2\repository\org\rnorth\duct-tape\duct-tape\1.0.8\duct-tape-1.0.8.jar;C:\Users\2432854\.m2\repository\org\jetbrains\annotations\17.0.0\annotations-17.0.0.jar;C:\Users\2432854\.m2\repository\com\github\docker-java\docker-java-api\3.3.4\docker-java-api-3.3.4.jar;C:\Users\2432854\.m2\repository\com\github\docker-java\docker-java-transport-zerodep\3.3.4\docker-java-transport-zerodep-3.3.4.jar;C:\Users\2432854\.m2\repository\com\github\docker-java\docker-java-transport\3.3.4\docker-java-transport-3.3.4.jar;C:\Users\2432854\.m2\repository\net\java\dev\jna\jna\5.13.0\jna-5.13.0.jar;C:\Users\2432854\.m2\repository\org\testcontainers\mysql\1.19.3\mysql-1.19.3.jar;C:\Users\2432854\.m2\repository\org\testcontainers\jdbc\1.19.3\jdbc-1.19.3.jar;C:\Users\2432854\.m2\repository\org\testcontainers\database-commons\1.19.3\database-commons-1.19.3.jar;C:\Users\2432854\.m2\repository\com\h2database\h2\2.2.224\h2-2.2.224.jar;C:\Users\2432854\.m2\repository\io\jsonwebtoken\jjwt-api\0.12.3\jjwt-api-0.12.3.jar;C:\Users\2432854\.m2\repository\io\jsonwebtoken\jjwt-impl\0.12.3\jjwt-impl-0.12.3.jar;C:\Users\2432854\.m2\repository\io\jsonwebtoken\jjwt-jackson\0.12.3\jjwt-jackson-0.12.3.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.15.3\jackson-databind-2.15.3.jar;C:\Users\2432854\.m2\repository\org\springdoc\springdoc-openapi-starter-webmvc-ui\2.3.0\springdoc-openapi-starter-webmvc-ui-2.3.0.jar;C:\Users\2432854\.m2\repository\org\springdoc\springdoc-openapi-starter-webmvc-api\2.3.0\springdoc-openapi-starter-webmvc-api-2.3.0.jar;C:\Users\2432854\.m2\repository\org\springdoc\springdoc-openapi-starter-common\2.3.0\springdoc-openapi-starter-common-2.3.0.jar;C:\Users\2432854\.m2\repository\io\swagger\core\v3\swagger-core-jakarta\2.2.19\swagger-core-jakarta-2.2.19.jar;C:\Users\2432854\.m2\repository\org\apache\commons\commons-lang3\3.13.0\commons-lang3-3.13.0.jar;C:\Users\2432854\.m2\repository\io\swagger\core\v3\swagger-annotations-jakarta\2.2.19\swagger-annotations-jakarta-2.2.19.jar;C:\Users\2432854\.m2\repository\io\swagger\core\v3\swagger-models-jakarta\2.2.19\swagger-models-jakarta-2.2.19.jar;C:\Users\2432854\.m2\repository\com\fasterxml\jackson\dataformat\jackson-dataformat-yaml\2.15.3\jackson-dataformat-yaml-2.15.3.jar;C:\Users\2432854\.m2\repository\org\webjars\swagger-ui\5.10.3\swagger-ui-5.10.3.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\2432854"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2025-04-15"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-24"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\2432854\OneDrive - Cognizant\Desktop\E-commerce\DE25JFSA003_E-commerce\backend\user-service"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="FILE_LOG_CHARSET" value="UTF-8"/>
+    <property name="java.awt.headless" value="true"/>
+    <property name="surefire.real.class.path" value="C:\Users\2432854\AppData\Local\Temp\surefire9599648950628388615\surefirebooter-20251009133928104_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="24.0.1+9-30"/>
+    <property name="user.name" value="2432854"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\2432854\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\2432854\AppData\Local\Temp\"/>
+    <property name="com.zaxxer.hikari.pool_number" value="1"/>
+    <property name="java.version" value="24.0.1"/>
+    <property name="user.dir" value="C:\Users\2432854\OneDrive - Cognizant\Desktop\E-commerce\DE25JFSA003_E-commerce\backend\user-service"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="PID" value="15952"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="CONSOLE_LOG_CHARSET" value="UTF-8"/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-24\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\nodejs\;C:\Program Files\Microsoft VS Code\bin;C:\software\apache-maven-3.9.10\bin;C:\software\cli-11.2.0\bin;C:\Program Files\cursor\resources\app\bin;C:\Program Files\Git\cmd;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\2432854\AppData\Local\Microsoft\WindowsApps;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2025.1.2\bin;C:\Users\2432854\AppData\Roaming\npm;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="24.0.1+9-30"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="68.0"/>
+    <property name="LOGGED_APPLICATION_NAME" value="[user-service-test] "/>
+  </properties>
+  <testcase name="testCompleteRegistrationAndLoginFlow" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.931">
+    <system-out><![CDATA[2025-10-09T13:39:44.622+05:30  INFO 15952 --- [user-service] [           main] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.ecommerce.userservice.integration.AuthenticationIntegrationTest]: AuthenticationIntegrationTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2025-10-09T13:39:44.661+05:30  INFO 15952 --- [user-service] [           main] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.ecommerce.userservice.UserServiceApplication for test class com.ecommerce.userservice.integration.AuthenticationIntegrationTest
+2025-10-09T13:39:44.680+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:44.779+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:45.116+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing POST /api/users/register
+2025-10-09T13:39:45.133+05:30 DEBUG 15952 --- [user-service] [           main] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-09T13:39:45.137+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Secured POST /api/users/register
+2025-10-09T13:39:45.244+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : User registration request for email: newuser@example.com
+2025-10-09T13:39:45.244+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Registering new user with email: newuser@example.com
+2025-10-09T13:39:45.262+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    delete 
+    from
+        users 
+    where
+        id=?
+2025-10-09T13:39:45.265+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2025-10-09T13:39:45.268+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    fetch
+        first ? rows only
+2025-10-09T13:39:45.350+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:45.351+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : User registered successfully with ID: 20
+2025-10-09T13:39:45.507+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2025-10-09T13:39:45.512+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing POST /api/users/login
+2025-10-09T13:39:45.512+05:30 DEBUG 15952 --- [user-service] [           main] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-09T13:39:45.512+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Secured POST /api/users/login
+2025-10-09T13:39:45.517+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : User login request for email: newuser@example.com
+2025-10-09T13:39:45.517+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Login attempt for email: newuser@example.com
+2025-10-09T13:39:45.519+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-10-09T13:39:45.593+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Login successful for email: newuser@example.com
+2025-10-09T13:39:45.596+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : JWT token generated for user: newuser@example.com
+]]></system-out>
+  </testcase>
+  <testcase name="testGetUserByEmail" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.185">
+    <system-out><![CDATA[2025-10-09T13:39:45.610+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:45.683+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:45.686+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing GET /api/users/email/test@example.com
+2025-10-09T13:39:45.747+05:30  INFO 15952 --- [user-service] [           main] c.e.u.security.JwtAuthenticationFilter   : Valid JWT token for user: test@example.com with role: CUSTOMER
+2025-10-09T13:39:45.748+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Secured GET /api/users/email/test@example.com
+2025-10-09T13:39:45.756+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : Fetching user profile for email: test@example.com
+2025-10-09T13:39:45.756+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Fetching user with email: test@example.com
+2025-10-09T13:39:45.759+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    delete 
+    from
+        users 
+    where
+        id=?
+2025-10-09T13:39:45.760+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+]]></system-out>
+  </testcase>
+  <testcase name="testLoginWithValidCredentials" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.216">
+    <system-out><![CDATA[2025-10-09T13:39:45.795+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:45.875+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:45.879+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing POST /api/users/login
+2025-10-09T13:39:45.880+05:30 DEBUG 15952 --- [user-service] [           main] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-09T13:39:45.880+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Secured POST /api/users/login
+2025-10-09T13:39:45.883+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : User login request for email: test@example.com
+2025-10-09T13:39:45.883+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Login attempt for email: test@example.com
+2025-10-09T13:39:45.885+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    delete 
+    from
+        users 
+    where
+        id=?
+2025-10-09T13:39:45.886+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-10-09T13:39:45.971+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Login successful for email: test@example.com
+2025-10-09T13:39:45.973+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : JWT token generated for user: test@example.com
+]]></system-out>
+  </testcase>
+  <testcase name="testGetUserProfileWithInvalidToken" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.146">
+    <failure message="Status expected:&lt;401&gt; but was:&lt;403&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<401> but was:<403>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.ecommerce.userservice.integration.AuthenticationIntegrationTest.testGetUserProfileWithInvalidToken(AuthenticationIntegrationTest.java:204)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+]]></failure>
+    <system-out><![CDATA[2025-10-09T13:39:46.019+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:46.138+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:46.144+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing GET /api/users/23
+2025-10-09T13:39:46.147+05:30 ERROR 15952 --- [user-service] [           main] c.e.userservice.security.JwtUtil         : Invalid JWT token: Malformed protected header JSON: Unable to deserialize: Unexpected character ('�' (code 65533 / 0xfffd)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
+ at [Source: (InputStreamReader); line: 1, column: 2]
+2025-10-09T13:39:46.147+05:30 ERROR 15952 --- [user-service] [           main] c.e.userservice.security.JwtUtil         : Token validation failed: Malformed protected header JSON: Unable to deserialize: Unexpected character ('�' (code 65533 / 0xfffd)): expected a valid value (JSON String, Number, Array, Object or token 'null', 'true' or 'false')
+ at [Source: (InputStreamReader); line: 1, column: 2]
+2025-10-09T13:39:46.147+05:30  WARN 15952 --- [user-service] [           main] c.e.u.security.JwtAuthenticationFilter   : Invalid JWT token
+2025-10-09T13:39:46.148+05:30 DEBUG 15952 --- [user-service] [           main] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-09T13:39:46.150+05:30 DEBUG 15952 --- [user-service] [           main] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /api/users/23
+       Parameters = {}
+          Headers = [Authorization:"Bearer invalid.token.here"]
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = null
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 403
+    Error message = Access Denied
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", X-Content-Type-Options:"nosniff", X-XSS-Protection:"0", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="testLoginWithInvalidPassword" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.168">
+    <system-out><![CDATA[2025-10-09T13:39:46.164+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:46.244+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:46.248+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing POST /api/users/login
+2025-10-09T13:39:46.249+05:30 DEBUG 15952 --- [user-service] [           main] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-09T13:39:46.249+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Secured POST /api/users/login
+2025-10-09T13:39:46.249+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : User login request for email: test@example.com
+2025-10-09T13:39:46.251+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Login attempt for email: test@example.com
+2025-10-09T13:39:46.252+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    delete 
+    from
+        users 
+    where
+        id=?
+2025-10-09T13:39:46.252+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-10-09T13:39:46.322+05:30  WARN 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Login failed: Invalid password for email: test@example.com
+]]></system-out>
+  </testcase>
+  <testcase name="testLoginWithBlockedUser" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.101">
+    <system-out><![CDATA[2025-10-09T13:39:46.332+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:46.402+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:46.405+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing POST /api/users/login
+2025-10-09T13:39:46.405+05:30 DEBUG 15952 --- [user-service] [           main] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-09T13:39:46.405+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Secured POST /api/users/login
+2025-10-09T13:39:46.406+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : User login request for email: test@example.com
+2025-10-09T13:39:46.406+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Login attempt for email: test@example.com
+2025-10-09T13:39:46.417+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    update
+        users 
+    set
+        address=?,
+        avatar=?,
+        email=?,
+        first_name=?,
+        last_login=?,
+        last_name=?,
+        password=?,
+        phone_number=?,
+        role=?,
+        status=?,
+        updated_at=?,
+        username=? 
+    where
+        id=?
+2025-10-09T13:39:46.423+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    delete 
+    from
+        users 
+    where
+        id=?
+2025-10-09T13:39:46.424+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-10-09T13:39:46.425+05:30  WARN 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Login failed: User account is not active: test@example.com
+]]></system-out>
+  </testcase>
+  <testcase name="testRegisterWithDuplicateEmail" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.093">
+    <system-out><![CDATA[2025-10-09T13:39:46.434+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:46.507+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:46.510+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing POST /api/users/register
+2025-10-09T13:39:46.510+05:30 DEBUG 15952 --- [user-service] [           main] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-09T13:39:46.510+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Secured POST /api/users/register
+2025-10-09T13:39:46.511+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : User registration request for email: test@example.com
+2025-10-09T13:39:46.511+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Registering new user with email: test@example.com
+2025-10-09T13:39:46.513+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    delete 
+    from
+        users 
+    where
+        id=?
+2025-10-09T13:39:46.513+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2025-10-09T13:39:46.515+05:30 ERROR 15952 --- [user-service] [           main] c.e.u.controller.UserController          : Error registering user: Email already exists: test@example.com
+]]></system-out>
+  </testcase>
+  <testcase name="testGetUserProfileWithValidToken" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.093">
+    <system-out><![CDATA[2025-10-09T13:39:46.528+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:46.599+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:46.602+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing GET /api/users/27
+2025-10-09T13:39:46.605+05:30  INFO 15952 --- [user-service] [           main] c.e.u.security.JwtAuthenticationFilter   : Valid JWT token for user: test@example.com with role: CUSTOMER
+2025-10-09T13:39:46.606+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Secured GET /api/users/27
+2025-10-09T13:39:46.607+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : Fetching user profile for ID: 27
+2025-10-09T13:39:46.608+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Fetching user with ID: 27
+]]></system-out>
+  </testcase>
+  <testcase name="testUpdateUserProfileWithValidToken" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.11">
+    <system-out><![CDATA[2025-10-09T13:39:46.621+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:46.696+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:46.703+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing PUT /api/users/28
+2025-10-09T13:39:46.707+05:30  INFO 15952 --- [user-service] [           main] c.e.u.security.JwtAuthenticationFilter   : Valid JWT token for user: test@example.com with role: CUSTOMER
+2025-10-09T13:39:46.707+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Secured PUT /api/users/28
+2025-10-09T13:39:46.719+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : Updating user profile for ID: 28
+2025-10-09T13:39:46.720+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Updating user with ID: 28
+2025-10-09T13:39:46.721+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : User updated successfully with ID: 28
+]]></system-out>
+  </testcase>
+  <testcase name="testJwtTokenContainsCorrectClaims" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.089">
+    <system-out><![CDATA[2025-10-09T13:39:46.733+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:46.810+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+]]></system-out>
+  </testcase>
+  <testcase name="testPasswordIsEncoded" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.15">
+    <system-out><![CDATA[2025-10-09T13:39:46.824+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:46.896+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:46.899+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    delete 
+    from
+        users 
+    where
+        id=?
+2025-10-09T13:39:46.901+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+]]></system-out>
+  </testcase>
+  <testcase name="testRegisterWithDuplicateUsername" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.085">
+    <system-out><![CDATA[2025-10-09T13:39:46.975+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:47.045+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:47.047+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing POST /api/users/register
+2025-10-09T13:39:47.048+05:30 DEBUG 15952 --- [user-service] [           main] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-09T13:39:47.048+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Secured POST /api/users/register
+2025-10-09T13:39:47.049+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : User registration request for email: different@example.com
+2025-10-09T13:39:47.049+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Registering new user with email: different@example.com
+2025-10-09T13:39:47.051+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    delete 
+    from
+        users 
+    where
+        id=?
+2025-10-09T13:39:47.051+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2025-10-09T13:39:47.053+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    fetch
+        first ? rows only
+2025-10-09T13:39:47.053+05:30 ERROR 15952 --- [user-service] [           main] c.e.u.controller.UserController          : Error registering user: Username already exists: testuser
+]]></system-out>
+  </testcase>
+  <testcase name="testJwtTokenExpiration" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.094">
+    <system-out><![CDATA[2025-10-09T13:39:47.061+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:47.144+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+]]></system-out>
+  </testcase>
+  <testcase name="testLoginWithNonExistentUser" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.097">
+    <system-out><![CDATA[2025-10-09T13:39:47.158+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:47.236+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:47.239+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing POST /api/users/login
+2025-10-09T13:39:47.241+05:30 DEBUG 15952 --- [user-service] [           main] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-09T13:39:47.241+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Secured POST /api/users/login
+2025-10-09T13:39:47.242+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : User login request for email: nonexistent@example.com
+2025-10-09T13:39:47.242+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Login attempt for email: nonexistent@example.com
+2025-10-09T13:39:47.244+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    delete 
+    from
+        users 
+    where
+        id=?
+2025-10-09T13:39:47.245+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+2025-10-09T13:39:47.246+05:30  WARN 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Login failed: User not found with email: nonexistent@example.com
+]]></system-out>
+  </testcase>
+  <testcase name="testJwtTokenValidation" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.087">
+    <system-out><![CDATA[2025-10-09T13:39:47.256+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:47.333+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+]]></system-out>
+  </testcase>
+  <testcase name="testGetUserProfileWithoutToken" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.081">
+    <failure message="Status expected:&lt;401&gt; but was:&lt;403&gt;" type="java.lang.AssertionError"><![CDATA[java.lang.AssertionError: Status expected:<401> but was:<403>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.ecommerce.userservice.integration.AuthenticationIntegrationTest.testGetUserProfileWithoutToken(AuthenticationIntegrationTest.java:197)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+]]></failure>
+    <system-out><![CDATA[2025-10-09T13:39:47.346+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:47.416+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:47.418+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing GET /api/users/35
+2025-10-09T13:39:47.420+05:30 DEBUG 15952 --- [user-service] [           main] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-09T13:39:47.420+05:30 DEBUG 15952 --- [user-service] [           main] o.s.s.w.a.Http403ForbiddenEntryPoint     : Pre-authenticated entry point called. Rejecting access
+
+MockHttpServletRequest:
+      HTTP Method = GET
+      Request URI = /api/users/35
+       Parameters = {}
+          Headers = []
+             Body = null
+    Session Attrs = {}
+
+Handler:
+             Type = null
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 403
+    Error message = Access Denied
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", X-Content-Type-Options:"nosniff", X-XSS-Protection:"0", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = null
+             Body = 
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  </testcase>
+  <testcase name="testRegisterWithoutLastName" classname="com.ecommerce.userservice.integration.AuthenticationIntegrationTest" time="0.154">
+    <failure message="expected: &lt;User&gt; but was: &lt;null&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <User> but was: <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+	at com.ecommerce.userservice.integration.AuthenticationIntegrationTest.testRegisterWithoutLastName(AuthenticationIntegrationTest.java:282)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+]]></failure>
+    <system-out><![CDATA[2025-10-09T13:39:47.427+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0
+2025-10-09T13:39:47.496+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:47.498+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Securing POST /api/users/register
+2025-10-09T13:39:47.499+05:30 DEBUG 15952 --- [user-service] [           main] o.s.s.w.a.AnonymousAuthenticationFilter  : Set SecurityContextHolder to anonymous SecurityContext
+2025-10-09T13:39:47.499+05:30 DEBUG 15952 --- [user-service] [           main] o.s.security.web.FilterChainProxy        : Secured POST /api/users/register
+2025-10-09T13:39:47.500+05:30  INFO 15952 --- [user-service] [           main] c.e.u.controller.UserController          : User registration request for email: noname@example.com
+2025-10-09T13:39:47.500+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : Registering new user with email: noname@example.com
+2025-10-09T13:39:47.501+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    delete 
+    from
+        users 
+    where
+        id=?
+2025-10-09T13:39:47.502+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.email=? 
+    fetch
+        first ? rows only
+2025-10-09T13:39:47.503+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id 
+    from
+        users u1_0 
+    where
+        u1_0.username=? 
+    fetch
+        first ? rows only
+2025-10-09T13:39:47.569+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    insert 
+    into
+        users
+        (address, avatar, created_at, email, first_name, last_login, last_name, password, phone_number, role, status, updated_at, username, id) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, default)
+2025-10-09T13:39:47.569+05:30  INFO 15952 --- [user-service] [           main] c.e.userservice.service.UserService      : User registered successfully with ID: 37
+2025-10-09T13:39:47.572+05:30 DEBUG 15952 --- [user-service] [           main] org.hibernate.SQL                        : 
+    select
+        u1_0.id,
+        u1_0.address,
+        u1_0.avatar,
+        u1_0.created_at,
+        u1_0.email,
+        u1_0.first_name,
+        u1_0.last_login,
+        u1_0.last_name,
+        u1_0.password,
+        u1_0.phone_number,
+        u1_0.role,
+        u1_0.status,
+        u1_0.updated_at,
+        u1_0.username 
+    from
+        users u1_0 
+    where
+        u1_0.email=?
+
+MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /api/users/register
+       Parameters = {_csrf=[JAa7liOJWViZ-H3kjSE_-R7JddKL8UFRCBRhx-gujNWJ0gbGQmKJ9RK8aG60yB_VuwwLyS2sWLC9wXl8bHdRpNtL7uO96mCi]}
+          Headers = [Content-Type:"application/json;charset=UTF-8", Content-Length:"156"]
+             Body = {"username":"noname","email":"noname@example.com","password":"password123","firstName":"No","lastName":null,"avatar":null,"phoneNumber":null,"address":null}
+    Session Attrs = {}
+
+Handler:
+             Type = com.ecommerce.userservice.controller.UserController
+           Method = com.ecommerce.userservice.controller.UserController#registerUser(UserRegistrationDTO)
+
+Async:
+    Async started = false
+     Async result = null
+
+Resolved Exception:
+             Type = null
+
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+
+FlashMap:
+       Attributes = null
+
+MockHttpServletResponse:
+           Status = 201
+    Error message = null
+          Headers = [Vary:"Origin", "Access-Control-Request-Method", "Access-Control-Request-Headers", Content-Type:"application/json", X-Content-Type-Options:"nosniff", X-XSS-Protection:"0", Cache-Control:"no-cache, no-store, max-age=0, must-revalidate", Pragma:"no-cache", Expires:"0", X-Frame-Options:"DENY"]
+     Content type = application/json
+             Body = {"success":true,"message":"User registered successfully","user":{"id":37,"username":"noname","email":"noname@example.com","firstName":"No","lastName":null,"role":"CUSTOMER","status":"ACTIVE","avatar":null,"phoneNumber":null,"address":null,"createdAt":"2025-10-09T13:39:47.5689077","updatedAt":"2025-10-09T13:39:47.5689077","lastLogin":null,"fullName":"No null"}}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+]]></system-out>
+  </testcase>
+</testsuite>

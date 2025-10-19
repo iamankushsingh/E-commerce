@@ -1,0 +1,7 @@
+com\ecommerce\wishlistservice\controller\WishlistControllerTest.class
+com\ecommerce\wishlistservice\dto\DTOTest.class
+com\ecommerce\wishlistservice\entity\WishlistItemTest.class
+com\ecommerce\wishlistservice\entity\WishlistCollectionTest.class
+com\ecommerce\wishlistservice\service\WishlistServiceTest.class
+com\ecommerce\wishlistservice\config\ConfigTest.class
+com\ecommerce\wishlistservice\exception\ExceptionTest.class

@@ -1,0 +1,14 @@
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\dto\ProductCreateDTO.java
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\config\OpenApiConfig.java
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\entity\Product.java
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\config\ModelMapperConfig.java
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\entity\ProductStatus.java
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\config\CorsConfig.java
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\exception\GlobalExceptionHandler.java
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\dto\ProductDTO.java
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\ProductServiceApplication.java
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\controller\ProductController.java
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\dto\PaginatedResponse.java
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\repository\ProductRepository.java
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\controller\AdminProductController.java
+C:\PROJECTS\ecommerce\E-commerce\backend\product-service\src\main\java\com\ecommerce\productservice\service\ProductService.java

@@ -1,0 +1,14 @@
+com\ecommerce\userservice\config\ConfigTest.class
+com\ecommerce\userservice\repository\UserRepositoryTest.class
+com\ecommerce\userservice\security\JwtAuthenticationFilterTest.class
+com\ecommerce\userservice\service\UserServiceTest.class
+com\ecommerce\userservice\controller\UserControllerTest.class
+com\ecommerce\userservice\service\UserStatsDTOTest.class
+com\ecommerce\userservice\controller\AdminUserControllerIntegrationTest.class
+com\ecommerce\userservice\integration\AuthenticationIntegrationTest.class
+com\ecommerce\userservice\dto\AdditionalDTOTest.class
+com\ecommerce\userservice\entity\UserTest.class
+com\ecommerce\userservice\entity\EnumTest.class
+com\ecommerce\userservice\security\JwtUtilTest.class
+com\ecommerce\userservice\dto\UserDTOTest.class
+com\ecommerce\userservice\controller\AdminUserControllerTest.class

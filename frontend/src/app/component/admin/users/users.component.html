@@ -1,0 +1,163 @@
+<div class="users">
+  <div class="users-header">
+    <div class="header-content">
+      <h1>User Management</h1>
+      <p>Manage user accounts and permissions</p>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-section">
+    <h3>Filters</h3>
+    <div class="filters-grid">
+      <div class="filter-group">
+        <label for="search">Search</label>
+        <input
+          id="search"
+          type="text"
+          [(ngModel)]="filters.search"
+          placeholder="Search users..."
+          (input)="onSearchChange($event.target.value)"
+        />
+      </div>
+
+      <div class="filter-group">
+        <label for="role">Role</label>
+        <select id="role" [(ngModel)]="filters.role" (change)="applyNonSearchFilters()">
+          <option value="">All Roles</option>
+          <option value="admin">Admin</option>
+          <option value="customer">Customer</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="status">Status</label>
+        <select id="status" [(ngModel)]="filters.status" (change)="applyNonSearchFilters()">
+          <option value="">All Status</option>
+          <option value="active">Active</option>
+          <option value="blocked">Blocked</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+
+      <div class="filter-actions">
+        <button class="clear-btn" (click)="clearFilters()">Clear Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading users...</p>
+  </div>
+
+  <!-- Users Table -->
+  <div *ngIf="!loading" class="users-table-container">
+    <div class="users-table">
+      <!-- Table Header -->
+      <div class="table-header">
+        <div class="col user-col">User</div>
+        <div class="col">Email</div>
+        <div class="col">Role</div>
+        <div class="col">Status</div>
+        <div class="col">Created</div>
+        <div class="col">Last Login</div>
+        <div class="col actions-col">Actions</div>
+      </div>
+
+      <!-- Table Rows -->
+      <div *ngFor="let user of filteredUsers" class="table-row">
+        <div class="col user-col">
+          <div class="user-info">
+            <img [src]="user.avatar" [alt]="user.firstName + ' ' + user.lastName" class="user-avatar" />
+            <div class="user-details">
+              <div class="user-name">{{ user.firstName }} {{ user.lastName }}</div>
+              <div class="username">{{ user.username }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <span class="email">{{ user.email }}</span>
+        </div>
+
+        <div class="col">
+          <span class="role-badge" [style.background-color]="getRoleColor(user.role)">
+            {{ user.role | titlecase }}
+          </span>
+        </div>
+
+        <div class="col">
+          <span class="status-badge" [style.background-color]="getStatusColor(user.status)">
+            {{ user.status | titlecase }}
+          </span>
+        </div>
+
+        <div class="col">
+          <span class="date">{{ formatDate(user.createdAt) }}</span>
+        </div>
+
+        <div class="col">
+          <span class="date" *ngIf="user.lastLogin">{{ formatDate(user.lastLogin) }}</span>
+          <span class="no-data" *ngIf="!user.lastLogin">Never</span>
+        </div>
+
+        <div class="col actions-col">
+          <div class="action-buttons">
+            <button
+              *ngIf="user.status === 'ACTIVE' || user.status === 'active'"
+              class="block-btn"
+              (click)="blockUser(user)"
+              title="Block User"
+            >
+              🚫
+            </button>
+            <button
+              *ngIf="user.status === 'BLOCKED' || user.status === 'blocked'"
+              class="unblock-btn"
+              (click)="unblockUser(user)"
+              title="Unblock User"
+            >
+              ✅
+            </button>
+            <button
+              class="delete-btn"
+              (click)="openDeleteModal(user)"
+              title="Delete User"
+            >
+              🗑️
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && filteredUsers.length === 0" class="empty-state">
+    <div class="empty-icon">👥</div>
+    <h3>No users found</h3>
+    <p>Try adjusting your filters to find users.</p>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div *ngIf="showDeleteModal" class="modal-overlay" (click)="closeDeleteModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Delete User</h3>
+      <button class="close-btn" (click)="closeDeleteModal()">✕</button>
+    </div>
+    
+    <div class="modal-body">
+      <p>Are you sure you want to delete user "<strong>{{ userToDelete?.firstName }} {{ userToDelete?.lastName }}</strong>"?</p>
+      <p class="warning">This action cannot be undone and will permanently remove all user data.</p>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="cancel-btn" (click)="closeDeleteModal()">Cancel</button>
+      <button class="confirm-delete-btn" (click)="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>

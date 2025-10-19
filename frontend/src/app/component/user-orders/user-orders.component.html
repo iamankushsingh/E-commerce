@@ -1,0 +1,185 @@
+<div class="user-orders-container">
+  <!-- Header -->
+  <div class="orders-header">
+    <div class="header-content">
+      <h1>My Orders</h1>
+      <p *ngIf="isUserLoggedIn">Track and manage your order history</p>
+      <p *ngIf="!isUserLoggedIn">Log in to view and manage your order history</p>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Loading your orders...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !isLoading" class="error-container">
+    <div class="error-icon">⚠️</div>
+    <h3>Something went wrong</h3>
+    <p>{{ error }}</p>
+    <button class="btn btn-primary" (click)="loadUserOrders()">Try Again</button>
+  </div>
+
+  <!-- Empty State - Not Logged In -->
+  <div *ngIf="!isLoading && !error && orders.length === 0 && !isUserLoggedIn" class="empty-state">
+    <div class="empty-icon">🔒</div>
+    <h3>Please Log In</h3>
+    <p>Log in to your account to view your order history and track your purchases.</p>
+    <a routerLink="/login" class="btn btn-primary">Log In</a>
+    <p style="margin-top: 16px; color: #6b7280;">Don't have an account? <a routerLink="/register" style="color: #667eea; text-decoration: none;">Sign up here</a></p>
+  </div>
+
+  <!-- Empty State - Logged In but No Orders -->
+  <div *ngIf="!isLoading && !error && orders.length === 0 && isUserLoggedIn" class="empty-state">
+    <div class="empty-icon">📦</div>
+    <h3>No orders yet</h3>
+    <p>You haven't placed any orders yet. Start shopping to see your orders here!</p>
+    <a routerLink="/product-listing" class="btn btn-primary">Start Shopping</a>
+  </div>
+
+  <!-- Orders List -->
+  <div *ngIf="!isLoading && !error && orders.length > 0" class="orders-list">
+    <div *ngFor="let order of orders" class="order-card">
+      <!-- Order Header -->
+      <div class="order-header">
+        <div class="order-info">
+          <h3 class="order-id">Order #{{ order.id }}</h3>
+          <p class="order-date">Placed on {{ formatDate(order.orderDate) }}</p>
+        </div>
+        <div class="order-status">
+          <span class="status-badge" [style.background-color]="getOrderStatusColor(order.orderStatus)">
+            {{ getOrderStatusText(order.orderStatus) }}
+          </span>
+        </div>
+      </div>
+
+      <!-- Order Items Preview -->
+      <div class="order-items-preview">
+        <div class="items-grid">
+          <div *ngFor="let item of order.items.slice(0, 3)" class="item-preview">
+            <div class="item-image">
+              <img [src]="item.image" [alt]="item.name" *ngIf="item.image; else placeholderImg">
+              <ng-template #placeholderImg>
+                <div class="image-placeholder">
+                  <i class="fas fa-image"></i>
+                </div>
+              </ng-template>
+            </div>
+            <div class="item-info">
+              <h4>{{ item.name }}</h4>
+              <p>Qty: {{ item.quantity }}</p>
+            </div>
+          </div>
+          
+          <!-- Show more items indicator -->
+          <div *ngIf="order.items.length > 3" class="more-items">
+            <div class="more-indicator">
+              <span>+{{ order.items.length - 3 }} more</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="order-summary">
+        <div class="summary-info">
+          <div class="total-items">
+            <span>{{ order.items.length }} item{{ order.items.length !== 1 ? 's' : '' }}</span>
+          </div>
+          <div class="total-amount">
+            <strong>Total: Rs {{ getOrderTotal(order) | number:'1.2-2' }}</strong>
+          </div>
+        </div>
+
+        <div class="order-actions">
+          <button class="btn btn-outline" (click)="viewOrderDetails(order.id)">
+            View Details
+          </button>
+          <button 
+            class="btn btn-primary" 
+            (click)="trackOrder(order.id)"
+            *ngIf="order.orderStatus !== 'delivered' && order.orderStatus !== 'cancelled'">
+            Track Order
+          </button>
+          <button 
+            class="btn btn-secondary" 
+            (click)="reorderItems(order)"
+            *ngIf="order.orderStatus === 'delivered'">
+            Reorder
+          </button>
+          <button 
+            class="btn btn-danger" 
+            (click)="cancelOrder(order)"
+            *ngIf="canCancelOrder(order)">
+            Cancel Order
+          </button>
+        </div>
+      </div>
+
+      <!-- Delivery Timeline for Active Orders -->
+      <div *ngIf="order.orderStatus !== 'delivered' && order.orderStatus !== 'cancelled'" class="delivery-timeline">
+        <div class="timeline-progress">
+          <div class="timeline-step" [class.completed]="order.orderStatus !== 'pending'">
+            <div class="step-icon">📝</div>
+            <span>Placed</span>
+          </div>
+          <div class="timeline-step" [class.completed]="order.orderStatus === 'processing' || order.orderStatus === 'shipped'">
+            <div class="step-icon">⚙️</div>
+            <span>Processing</span>
+          </div>
+          <div class="timeline-step" [class.completed]="order.orderStatus === 'shipped'">
+            <div class="step-icon">🚚</div>
+            <span>Shipped</span>
+          </div>
+          <div class="timeline-step" [class.completed]="false">
+            <div class="step-icon">🏠</div>
+            <span>Delivered</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delivery Timeline for Delivered Orders -->
+      <div *ngIf="order.orderStatus === 'delivered'" class="delivery-timeline">
+        <div class="timeline-progress">
+          <div class="timeline-step completed">
+            <div class="step-icon">📝</div>
+            <span>Placed</span>
+          </div>
+          <div class="timeline-step completed">
+            <div class="step-icon">⚙️</div>
+            <span>Processing</span>
+          </div>
+          <div class="timeline-step completed">
+            <div class="step-icon">🚚</div>
+            <span>Shipped</span>
+          </div>
+          <div class="timeline-step completed">
+            <div class="step-icon">🏠</div>
+            <span>Delivered</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help Section -->
+  <div *ngIf="!isLoading && orders.length > 0" class="help-section">
+    <div class="help-content">
+      <h3>Need Help?</h3>
+      <p>If you have any questions about your orders, we're here to help.</p>
+      <div class="help-links">
+        <a href="mailto:support@example.com" class="help-link">
+          📧 Contact Support
+        </a>
+        <a href="/faq" class="help-link">
+          ❓ View FAQ
+        </a>
+        <a href="/returns" class="help-link">
+          🔄 Return Policy
+        </a>
+      </div>
+    </div>
+  </div>
+</div> 

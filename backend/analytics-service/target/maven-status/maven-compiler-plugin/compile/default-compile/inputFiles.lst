@@ -1,0 +1,15 @@
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\client\OrderServiceClient.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\dto\OrderStatusDataDTO.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\service\AnalyticsService.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\config\OpenApiConfig.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\dto\external\OrderItemDTO.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\dto\TopProductDTO.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\dto\RevenueDataDTO.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\dto\SalesReportDTO.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\client\UserServiceClient.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\dto\external\PaginatedResponse.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\AnalyticsServiceApplication.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\config\WebClientConfig.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\controller\AnalyticsController.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\client\ProductServiceClient.java
+C:\PROJECTS\ecommerce\E-commerce\backend\analytics-service\src\main\java\com\ecommerce\analyticsservice\dto\external\OrderDTO.java

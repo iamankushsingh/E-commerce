@@ -1,0 +1,75 @@
+<div class="wishlist-container">
+	<div class="wishlist-header">
+		<h2>Wishlist</h2>
+		<button class="add-collection-btn success-btn" (click)="toggleAddCollection()">Add Collection</button>
+	</div>
+
+	<div class="add-collection-form" *ngIf="showAddCollectionForm">
+		<input type="text" [(ngModel)]="newCollectionName" placeholder="Collection name" class="collection-input" />
+		<button class="save-btn success-btn" (click)="saveCollection()">Save</button>
+		<button class="cancel-btn" (click)="toggleAddCollection()">Cancel</button>
+	</div>
+
+	<div class="pending-banner" *ngIf="wishlistService.pendingItem() as pendingItem">
+		<div class="pending-content">
+			<span>Choose a collection to add:</span>
+			<strong>{{ pendingItem.productName || pendingItem.name }} ({{ pendingItem.category || pendingItem.size }})</strong>
+		</div>
+		<div class="pending-actions">
+			<button class="create-collection-quick-btn success-btn" (click)="toggleAddCollection()" *ngIf="wishlistService.collections().length === 0">
+				Create First Collection
+			</button>
+			<button class="cancel-pending-btn secondary-btn" (click)="cancelPendingItem()">
+				Cancel
+			</button>
+		</div>
+	</div>
+
+	<div class="collections" *ngIf="wishlistService.collections().length > 0; else emptyState">
+		<div class="collection" *ngFor="let collection of wishlistService.collections()">
+			<div class="collection-header">
+				<h3>{{ collection.name }}</h3>
+				<div class="collection-actions">
+					<button 
+						class="select-collection-btn success-btn" 
+						(click)="selectCollection(collection.id)"
+						[disabled]="!wishlistService.pendingItem()">
+						Add to Collection
+					</button>
+					<button class="delete-collection-btn danger-btn" (click)="deleteCollection(collection.id)">Delete</button>
+				</div>
+			</div>
+
+			<div class="collection-items" *ngIf="collection.items.length > 0; else emptyCollection">
+				<div class="collection-item" *ngFor="let item of collection.items">
+					<div class="item-image">
+						<img [src]="item.imageUrl || item.image" [alt]="item.productName || item.name" onerror="this.src='assets/placeholder.png'">
+					</div>
+					<div class="item-info">
+						<h4 class="item-name">{{ item.productName || item.name }}</h4>
+						<p class="item-category">Category: {{ item.category || item.size }}</p>
+						<p class="item-price">Rs {{ item.price }}</p>
+						<div class="item-buttons">
+							<button class="primary-btn success-btn" (click)="addToCartFromWishlist(collection.id, item)">Add to Cart</button>
+							<button class="secondary-btn danger-btn" (click)="removeFromWishlist(collection.id, item)">Remove</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<ng-template #emptyCollection>
+				<p class="muted">No items in this collection.</p>
+			</ng-template>
+		</div>
+	</div>
+
+	<ng-template #emptyState>
+		<div class="empty-state">
+			<p class="muted" *ngIf="!wishlistService.pendingItem()">
+				No collections yet. Click "Add Collection" to create your first collection.
+			</p>
+			<p class="muted" *ngIf="wishlistService.pendingItem()">
+				You need to create a collection first to add '{{(wishlistService.pendingItem())!.productName || (wishlistService.pendingItem())!.name}}' to your wishlist.
+			</p>
+		</div>
+	</ng-template>
+</div> 

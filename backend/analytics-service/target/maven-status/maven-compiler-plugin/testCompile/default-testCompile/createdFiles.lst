@@ -1,0 +1,5 @@
+com\ecommerce\analyticsservice\service\AnalyticsServiceTest.class
+com\ecommerce\analyticsservice\client\ClientTest.class
+com\ecommerce\analyticsservice\config\ConfigTest.class
+com\ecommerce\analyticsservice\controller\AnalyticsControllerTest.class
+com\ecommerce\analyticsservice\dto\DTOTest.class

@@ -1,0 +1,17 @@
+com\ecommerce\productservice\config\ModelMapperConfigTest$ComplexDestination.class
+com\ecommerce\productservice\config\ModelMapperConfigTest$NestedObject.class
+com\ecommerce\productservice\config\ModelMapperConfigTest$TestSource.class
+com\ecommerce\productservice\exception\GlobalExceptionHandlerTest.class
+com\ecommerce\productservice\controller\AdminProductControllerTest.class
+com\ecommerce\productservice\config\ModelMapperConfigTest$TestDestination.class
+com\ecommerce\productservice\config\ModelMapperConfigTest.class
+com\ecommerce\productservice\dto\ProductCreateDTOTest.class
+com\ecommerce\productservice\ProductServiceApplicationTest.class
+com\ecommerce\productservice\dto\PaginatedResponseTest.class
+com\ecommerce\productservice\entity\ProductTest.class
+com\ecommerce\productservice\config\ModelMapperConfigTest$ComplexSource.class
+com\ecommerce\productservice\config\AdditionalConfigTest.class
+com\ecommerce\productservice\entity\ProductStatusTest.class
+com\ecommerce\productservice\service\ProductServiceTest.class
+com\ecommerce\productservice\dto\ProductDTOTest.class
+com\ecommerce\productservice\controller\ProductControllerTest.class

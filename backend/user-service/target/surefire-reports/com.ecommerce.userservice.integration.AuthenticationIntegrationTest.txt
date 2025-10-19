@@ -1,0 +1,39 @@
+-------------------------------------------------------------------------------
+Test set: com.ecommerce.userservice.integration.AuthenticationIntegrationTest
+-------------------------------------------------------------------------------
+Tests run: 17, Failures: 3, Errors: 0, Skipped: 0, Time elapsed: 2.963 s <<< FAILURE! -- in com.ecommerce.userservice.integration.AuthenticationIntegrationTest
+com.ecommerce.userservice.integration.AuthenticationIntegrationTest.testGetUserProfileWithInvalidToken -- Time elapsed: 0.146 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<401> but was:<403>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.ecommerce.userservice.integration.AuthenticationIntegrationTest.testGetUserProfileWithInvalidToken(AuthenticationIntegrationTest.java:204)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.ecommerce.userservice.integration.AuthenticationIntegrationTest.testGetUserProfileWithoutToken -- Time elapsed: 0.081 s <<< FAILURE!
+java.lang.AssertionError: Status expected:<401> but was:<403>
+	at org.springframework.test.util.AssertionErrors.fail(AssertionErrors.java:59)
+	at org.springframework.test.util.AssertionErrors.assertEquals(AssertionErrors.java:122)
+	at org.springframework.test.web.servlet.result.StatusResultMatchers.lambda$matcher$9(StatusResultMatchers.java:637)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.ecommerce.userservice.integration.AuthenticationIntegrationTest.testGetUserProfileWithoutToken(AuthenticationIntegrationTest.java:197)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
+com.ecommerce.userservice.integration.AuthenticationIntegrationTest.testRegisterWithoutLastName -- Time elapsed: 0.154 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <User> but was: <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertEquals.failNotEqual(AssertEquals.java:197)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:182)
+	at org.junit.jupiter.api.AssertEquals.assertEquals(AssertEquals.java:177)
+	at org.junit.jupiter.api.Assertions.assertEquals(Assertions.java:1145)
+	at com.ecommerce.userservice.integration.AuthenticationIntegrationTest.testRegisterWithoutLastName(AuthenticationIntegrationTest.java:282)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+

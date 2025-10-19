@@ -1,0 +1,17 @@
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\config\ModelMapperConfig.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\dto\WishlistStatsDTO.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\repository\WishlistCollectionRepository.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\dto\WishlistItemDTO.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\exception\WishlistNotFoundException.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\dto\CreateCollectionDTO.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\entity\WishlistCollection.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\repository\WishlistItemRepository.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\controller\WishlistController.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\WishlistServiceApplication.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\entity\WishlistItem.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\exception\DuplicateItemException.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\service\WishlistService.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\dto\WishlistCollectionDTO.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\config\WebClientConfig.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\config\OpenApiConfig.java
+C:\PROJECTS\ecommerce\E-commerce\backend\wishlist-service\src\main\java\com\ecommerce\wishlistservice\dto\AddItemToCollectionDTO.java

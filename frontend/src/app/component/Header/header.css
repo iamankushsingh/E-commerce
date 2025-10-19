@@ -1,0 +1,403 @@
+.header {
+  background-color: #000;
+  color: white;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  height: 60px;
+  
+}
+
+.nav-customer,
+.nav-admin {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.logo:hover {
+  color: #ccc;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #ccc;
+}
+
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: white;
+}
+
+
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  color: white;
+  min-width: 200px;
+  transition: border-color 0.3s ease;
+}
+
+.search-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.search-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-left: 0.5rem;
+  border-radius: 4px;
+  transition: color 0.3s ease;
+}
+
+.search-btn:hover {
+  color: #ccc;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Wishlist Button */
+.wishlist-btn {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.wishlist-btn:hover {
+  color: #ff6b9d;
+  background-color: rgba(255, 107, 157, 0.1);
+}
+
+.wishlist-count {
+  background-color: #ff6b9d;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+}
+
+/* Cart Button */
+.cart-btn {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.cart-btn:hover {
+  color: #4ade80;
+  background-color: rgba(74, 222, 128, 0.1);
+}
+
+.cart-count {
+  background-color: #4ade80;
+  color: black;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+}
+
+/* User Menu */
+.user-menu {
+  display: flex;
+  align-items: center;
+}
+
+.login-btn {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: transparent;
+}
+
+.login-btn:hover {
+  background-color: white;
+  color: black;
+  border-color: white;
+}
+
+/* Admin Specific Styles */
+.back-to-store {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.back-to-store:hover {
+  color: #60a5fa;
+  background-color: rgba(96, 165, 250, 0.1);
+}
+
+.admin-cart {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.admin-cart:hover {
+  color: white;
+  background-color: transparent;
+}
+
+.admin-user {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+}
+
+.admin-label {
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* Logged-in user menu styles */
+.logged-in-menu {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-btn {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.profile-btn:hover {
+  background-color: white;
+  color: black;
+  border-color: white;
+}
+
+.orders-btn {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.orders-btn:hover {
+  background-color: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(59, 130, 246, 0.3);
+}
+
+.logout-btn {
+  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(245, 101, 101, 0.3);
+}
+
+/* Admin logged-in styles */
+.admin-logged-in {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-logout-btn {
+  background: linear-gradient(135deg, #f56565 0%, #e53e3e 100%);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.admin-logout-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(245, 101, 101, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .nav {
+    padding: 0 1rem;
+  }
+
+  .nav-links {
+    display: flex; /* Keep nav links visible on mobile */
+    gap: 1rem; /* Reduce gap on mobile */
+  }
+
+  .nav-links a {
+    font-size: 0.875rem; /* Smaller font on mobile */
+    padding: 0.25rem 0; /* Reduce padding */
+  }
+
+  .orders-nav-link {
+    padding: 0.25rem 0.5rem !important; /* Smaller button on mobile */
+    font-size: 0.75rem;
+  }
+
+  .search-input {
+    min-width: 120px;
+  }
+
+  .nav-actions {
+    gap: 0.5rem;
+  }
+
+  .back-to-store span {
+    display: none;
+  }
+
+  .nav-right {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    display: none;
+  }
+
+  .nav-actions {
+    gap: 0.5rem;
+  }
+}

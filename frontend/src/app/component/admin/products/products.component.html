@@ -1,0 +1,176 @@
+<div class="products">
+  <div class="products-header">
+    <div class="header-content">
+      <h1>Product Management</h1>
+      <p>Manage your product catalog</p>
+    </div>
+    <button class="add-btn" routerLink="/admin/products/new">
+      <span class="btn-icon">+</span>
+      Add Product
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div class="filters-section">
+    <h3>Filters</h3>
+    <div class="filters-grid">
+      <div class="filter-group">
+        <label for="search">Search</label>
+        <input
+          id="search"
+          type="text"
+          [(ngModel)]="filters.search"
+          placeholder="Search products..."
+          (input)="applyFilters()"
+        />
+      </div>
+
+      <div class="filter-group">
+        <label for="category">Category</label>
+        <select id="category" [(ngModel)]="filters.category" (change)="applyFilters()">
+          <option value="">All Categories</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Home & Garden">Home & Garden</option>
+          <option value="Food & Beverage">Food & Beverage</option>
+          <option value="Sports & Outdoors">Sports & Outdoors</option>
+          <option value="Books">Books</option>
+          <option value="Health & Beauty">Health & Beauty</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="status">Status</label>
+        <select id="status" [(ngModel)]="filters.status" (change)="applyFilters()">
+          <option value="">All Status</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="minPrice">Min Price (Rs)</label>
+        <input
+          id="minPrice"
+          type="number"
+          [(ngModel)]="filters.minPrice"
+          placeholder="Min Rs"
+          (input)="applyFilters()"
+        />
+      </div>
+
+      <div class="filter-group">
+        <label for="maxPrice">Max Price (Rs)</label>
+        <input
+          id="maxPrice"
+          type="number"
+          [(ngModel)]="filters.maxPrice"
+          placeholder="Max Rs"
+          (input)="applyFilters()"
+        />
+      </div>
+
+      <div class="filter-actions">
+        <button class="clear-btn" (click)="clearFilters()">Clear Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div *ngIf="loading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading products...</p>
+  </div>
+
+  <!-- Products Grid -->
+  <div *ngIf="!loading" class="products-grid">
+    <div *ngFor="let product of filteredProducts" class="product-card">
+      <div class="product-image">
+        <img 
+          [src]="product.imageUrl" 
+          [alt]="product.name" 
+          (error)="onImageError($event, product.category)"
+          loading="lazy"
+        />
+        <div class="product-status" [style.background-color]="getStatusColor(product.status)">
+          {{ product.status | titlecase }}
+        </div>
+      </div>
+
+      <div class="product-info">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-description">{{ product.description }}</p>
+        
+        <div class="product-details">
+          <div class="detail-item">
+            <span class="label">Price:</span>
+            <span class="value price">Rs {{ product.price | number:'1.2-2' }}</span>
+          </div>
+          
+          <div class="detail-item">
+            <span class="label">Category:</span>
+            <span class="value">{{ product.category }}</span>
+          </div>
+          
+          <div class="detail-item">
+            <span class="label">Stock:</span>
+            <span 
+              class="value stock"
+              [style.color]="getStockStatus(product.stock).color"
+            >
+              {{ product.stock }} ({{ getStockStatus(product.stock).text }})
+            </span>
+          </div>
+        </div>
+
+        <div class="product-actions">
+          <button 
+            class="edit-btn"
+            [routerLink]="['/admin/products/edit', product.id]"
+          >
+            <span class="btn-icon">✏️</span>
+            Edit
+          </button>
+          <button 
+            class="delete-btn"
+            (click)="openDeleteModal(product)"
+          >
+            <span class="btn-icon">🗑️</span>
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div *ngIf="!loading && filteredProducts.length === 0" class="empty-state">
+    <div class="empty-icon">📦</div>
+    <h3>No products found</h3>
+    <p>Try adjusting your filters or add a new product.</p>
+    <!-- <button class="add-btn" routerLink="/admin/products/new">
+      <span class="btn-icon">➕</span>
+      Add Your First Product
+    </button> -->
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div *ngIf="showDeleteModal" class="modal-overlay" (click)="closeDeleteModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Delete Product</h3>
+      <button class="close-btn" (click)="closeDeleteModal()">✕</button>
+    </div>
+    
+    <div class="modal-body">
+      <p>Are you sure you want to delete "<strong>{{ productToDelete?.name }}</strong>"?</p>
+      <p class="warning">This action cannot be undone.</p>
+    </div>
+    
+    <div class="modal-footer">
+      <button class="cancel-btn" (click)="closeDeleteModal()">Cancel</button>
+      <button class="confirm-delete-btn" (click)="confirmDelete()">Delete</button>
+    </div>
+  </div>
+</div>

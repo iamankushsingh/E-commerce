@@ -1,0 +1,17 @@
+com\ecommerce\wishlistservice\dto\WishlistCollectionDTO.class
+com\ecommerce\wishlistservice\repository\WishlistItemRepository.class
+com\ecommerce\wishlistservice\entity\WishlistItem.class
+com\ecommerce\wishlistservice\exception\DuplicateItemException.class
+com\ecommerce\wishlistservice\dto\CreateCollectionDTO.class
+com\ecommerce\wishlistservice\controller\WishlistController.class
+com\ecommerce\wishlistservice\entity\WishlistCollection.class
+com\ecommerce\wishlistservice\WishlistServiceApplication.class
+com\ecommerce\wishlistservice\dto\WishlistItemDTO.class
+com\ecommerce\wishlistservice\exception\WishlistNotFoundException.class
+com\ecommerce\wishlistservice\config\WebClientConfig.class
+com\ecommerce\wishlistservice\dto\AddItemToCollectionDTO.class
+com\ecommerce\wishlistservice\config\ModelMapperConfig.class
+com\ecommerce\wishlistservice\repository\WishlistCollectionRepository.class
+com\ecommerce\wishlistservice\config\OpenApiConfig.class
+com\ecommerce\wishlistservice\service\WishlistService.class
+com\ecommerce\wishlistservice\dto\WishlistStatsDTO.class

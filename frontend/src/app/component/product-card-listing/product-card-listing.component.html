@@ -1,0 +1,73 @@
+<div class="card" [class.inactive]="product.status==='inactive'">
+	<div class="image-wrap">
+		<img 
+			[src]="product!.imageUrl" 
+			[alt]="product!.name"
+			(error)="onImageError($event)"
+			loading="lazy"
+		/>
+		<!-- Stock badge -->
+		<div class="stock-badge" [class.out-of-stock]="product!.stock === 0">
+			{{ product!.stock === 0 ? 'Out of Stock' : 'In Stock' }}
+		</div>
+	</div>
+	<div class="content">
+		<h3 class="name" [title]="product!.name">{{ product!.name }}</h3>
+		<p class="desc" [title]="product!.description">{{ product!.description }}</p>
+		
+		<!-- Price highlight section -->
+		<div class="price-section">
+			<div class="price">
+				<span class="currency">Rs</span>
+				<span class="amount">{{ product!.price | number:'1.2-2' }}</span>
+			</div>
+		</div>
+		
+		<!-- Product meta information -->
+		<div class="meta">
+			<div class="category-info">
+				<div class="label">Category</div>
+				<div class="value">{{ product!.category }}</div>
+			</div>
+			<div class="stock-info">
+				<div class="label">Available</div>
+				<div class="value" [class.in-stock]="product!.stock>0" [class.out-stock]="product!.stock===0">
+					{{ product!.stock }} {{ product!.stock === 1 ? 'unit' : 'units' }}
+				</div>
+			</div>
+		</div>
+		
+		<div class="actions">
+			<a [routerLink]="['/product-listing', product!.id]" class="view-details-btn" [attr.aria-label]="'View details for ' + product!.name">
+				<span>View Details</span>
+			</a>
+			
+			<!-- Show Add to Cart initially -->
+			<button 
+				*ngIf="!isInCart()" 
+				class="add-to-cart-btn" 
+				(click)="addToCartWithQuantity()" 
+				[disabled]="product!.stock===0"
+				[attr.aria-label]="product!.stock === 0 ? 'Out of stock' : 'Add ' + product!.name + ' to cart'">
+				<span>{{ product!.stock === 0 ? 'Unavailable' : 'Add to Cart' }}</span>
+			</button>
+			
+			<!-- Show Go to Cart button after adding to cart -->
+			<a 
+				*ngIf="isInCart() && product!.stock > 0"
+				routerLink="/cart" 
+				class="go-to-cart-btn"
+				[attr.aria-label]="'Go to cart'">
+				<span>Go to Cart</span>
+			</a>
+			
+			<button 
+				class="wishlist-btn" 
+				[class.in-wishlist]="isInWishlist()" 
+				(click)="toggleWishlist()"
+				[attr.aria-label]="(isInWishlist() ? 'Remove from' : 'Add to') + ' wishlist: ' + product!.name">
+				<span class="heart-icon">{{ isInWishlist() ? '♥' : '♡' }}</span>
+			</button>
+		</div>
+	</div>
+</div> 

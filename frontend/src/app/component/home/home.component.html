@@ -1,0 +1,116 @@
+<div class="home-container">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">Welcome to Our Store</h1>
+        <p class="hero-subtitle">Discover amazing products at unbeatable prices. From electronics to clothing, we have everything you need.</p>
+        <div class="hero-actions">
+          <a routerLink="/product-listing" class="cta-button primary">Shop Now</a>
+          <a routerLink="/product-listing" class="cta-button secondary">Browse Categories</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&auto=format&fit=crop" alt="Shopping" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories">
+    <div class="container">
+      <h2 class="section-title">Shop by Category</h2>
+      <div class="categories-grid">
+        <div class="category-card" *ngFor="let category of categories()">
+          <a [routerLink]="['/product-listing']" [queryParams]="{category: category}" class="category-link">
+            <div class="category-image">
+              <img [src]="getCategoryImage(category)" [alt]="category" />
+            </div>
+            <div class="category-info">
+              <h3 class="category-name">{{ category }}</h3>
+              <p class="category-description">{{ getCategoryDescription(category) }}</p>
+              <span class="shop-now">Shop Now →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section class="featured-products">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Featured Products</h2>
+        <a routerLink="/product-listing" class="view-all">View All Products →</a>
+      </div>
+      <div class="products-grid">
+        <app-product-card-listing
+          *ngFor="let product of featuredProducts()"
+          [product]="product"
+          (addToCart)="onAddToCart($event)"
+          (addToWishlist)="onAddToWishlist($event)">
+        </app-product-card-listing>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Why Shop With Us?</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+              <polyline points="3.27,6.96 12,12.01 20.73,6.96"></polyline>
+              <line x1="12" y1="22.08" x2="12" y2="12"></line>
+            </svg>
+          </div>
+          <h3>Fast Delivery</h3>
+          <p>Quick and reliable shipping to your doorstep</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12l2 2 4-4"></path>
+              <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3"></path>
+              <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3"></path>
+              <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3"></path>
+              <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3"></path>
+            </svg>
+          </div>
+          <h3>Quality Guarantee</h3>
+          <p>High-quality products with satisfaction guarantee</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="1" y="3" width="15" height="13"></rect>
+              <polygon points="16,8 20,8 23,11 23,16 16,16 16,8"></polygon>
+              <circle cx="5.5" cy="18.5" r="2.5"></circle>
+              <circle cx="18.5" cy="18.5" r="2.5"></circle>
+            </svg>
+          </div>
+          <h3>Easy Returns</h3>
+          <p>Hassle-free returns within 30 days</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3>24/7 Support</h3>
+          <p>Customer support available around the clock</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</div> 

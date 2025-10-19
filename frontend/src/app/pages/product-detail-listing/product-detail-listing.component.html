@@ -1,0 +1,105 @@
+<div class="product-detail-container" *ngIf="product(); else loading">
+	<div class="back-button">
+		<button (click)="goBack()" class="back-btn">
+			← Back to Products
+		</button>
+	</div>
+	
+	<div class="product-detail">
+		<div class="product-image">
+			<img 
+				[src]="product()!.imageUrl" 
+				[alt]="product()!.name"
+				(error)="onImageError($event)"
+			/>
+		</div>
+		
+		<div class="product-info">
+			<div class="product-header">
+				<h1 class="product-title">{{ product()!.name }}</h1>
+				<div class="price-section">
+					<span class="price">Rs {{ product()!.price | number:'1.2-2' }}</span>
+					<span class="stock-info" [class.in-stock]="product()!.stock > 0" [class.out-stock]="product()!.stock === 0">
+						{{ product()!.stock > 0 ? 'In Stock (' + product()!.stock + ')' : 'Out of Stock' }}
+					</span>
+				</div>
+			</div>
+			
+			<p class="product-description">{{ product()!.description }}</p>
+			
+			<!-- Brief Product Description -->
+			<div class="product-brief">
+				<h3>About This Product</h3>
+				<p>{{ getBriefDescription() }}</p>
+			</div>
+			
+			<div class="product-meta">
+				<div class="meta-chip">
+					<span class="meta-label">Category</span>
+					<span class="meta-value">{{ product()!.category }}</span>
+				</div>
+			</div>
+			
+			<div class="purchase-section">
+				<!-- Quantity Controls (only shown after adding to cart) -->
+				<div class="quantity-section" *ngIf="isInCart() && product()!.stock > 0">
+					<label class="quantity-label">Quantity:</label>
+					<div class="quantity-controls">
+						<button 
+							class="quantity-btn" 
+							(click)="decreaseQuantity()" 
+							type="button">
+							−
+						</button>
+						<span class="quantity-display">{{ quantity() }}</span>
+						<button 
+							class="quantity-btn" 
+							(click)="increaseQuantity()" 
+							[disabled]="quantity() >= product()!.stock"
+							type="button">
+							+
+						</button>
+					</div>
+				</div>
+				
+				<div class="actions">
+					<!-- Show Add to Cart initially -->
+					<button 
+						*ngIf="!isInCart()"
+						class="add-to-cart-btn" 
+						[disabled]="product()!.stock === 0"
+						(click)="addToCart()">
+						{{ product()!.stock === 0 ? 'Out of Stock' : 'Add to Cart' }}
+					</button>
+					
+					<!-- Show Continue Shopping after adding to cart -->
+					<button 
+						*ngIf="isInCart()"
+						class="continue-shopping-btn"
+						(click)="goBack()">
+						← Continue Shopping
+					</button>
+					
+					<button class="wishlist-btn" [class.in-wishlist]="isInWishlist()" (click)="addToWishlist()">
+						{{ isInWishlist() ? '♥ Remove from Wishlist' : '♡ Add to Wishlist' }}
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<ng-template #loading>
+	<div class="loading-container">
+		<div class="loading-spinner"></div>
+		<p>Loading product details...</p>
+	</div>
+</ng-template>
+
+<div *ngIf="!product() && !isLoading" class="error-container">
+	<h2>Product Not Found</h2>
+	<p>The product you're looking for doesn't exist.</p>
+	<button (click)="goBack()" class="back-btn">
+		← Back to Products
+	</button>
+</div> 

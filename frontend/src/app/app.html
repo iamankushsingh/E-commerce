@@ -1,0 +1,7 @@
+<div [class.no-header]="shouldHideNavbar">
+  <app-header></app-header>
+  
+  <router-outlet></router-outlet>
+  
+  <app-footer *ngIf="!shouldHideNavbar"></app-footer>
+</div>

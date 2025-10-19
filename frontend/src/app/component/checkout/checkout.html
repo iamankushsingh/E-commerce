@@ -1,0 +1,424 @@
+<div class="checkout-container" *ngIf="!orderProcessed">
+  <div class="checkout-content">
+    <div class="checkout-main">
+      <h1>Checkout</h1>
+      
+      <!-- Progress Steps -->
+      <div class="checkout-steps">
+        <div class="step" [class.active]="currentStep === 1" [class.completed]="currentStep > 1" (click)="goToStep(1)">
+          <span class="step-number">1</span>
+          <span class="step-label">Address</span>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step" [class.active]="currentStep === 2" [class.completed]="currentStep > 2" (click)="goToStep(2)">
+          <span class="step-number">2</span>
+          <span class="step-label">Shipping</span>
+        </div>
+        <div class="step-divider"></div>
+        <div class="step" [class.active]="currentStep === 3" [class.completed]="currentStep > 3" (click)="goToStep(3)">
+          <span class="step-number">3</span>
+          <span class="step-label">Payment</span>
+        </div>
+      </div>
+
+      <!-- Step 1: Address -->
+      <div class="checkout-step-content" *ngIf="currentStep === 1">
+        <h2>Shipping Information</h2>
+        <form class="address-form">
+          <div class="form-row">
+            <div class="form-group">
+              <input 
+                type="text" 
+                placeholder="First Name" 
+                class="form-input" 
+                [class.error]="hasValidationError('firstName')"
+                [(ngModel)]="checkoutData.firstName" 
+                name="firstName" />
+              <div class="error-message" *ngIf="hasValidationError('firstName')">
+                {{ getValidationError('firstName') }}
+              </div>
+            </div>
+            <div class="form-group">
+              <input 
+                type="text" 
+                placeholder="Last Name" 
+                class="form-input" 
+                [class.error]="hasValidationError('lastName')"
+                [(ngModel)]="checkoutData.lastName" 
+                name="lastName" />
+              <div class="error-message" *ngIf="hasValidationError('lastName')">
+                {{ getValidationError('lastName') }}
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <input 
+              type="text" 
+              placeholder="Address" 
+              class="form-input" 
+              [class.error]="hasValidationError('address')"
+              [(ngModel)]="checkoutData.address" 
+              name="address" />
+            <div class="error-message" *ngIf="hasValidationError('address')">
+              {{ getValidationError('address') }}
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <input 
+              type="text" 
+              placeholder="Apartment, suite, etc. (optional)" 
+              class="form-input" 
+              [(ngModel)]="checkoutData.apartment" 
+              name="apartment" />
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <input 
+                type="text" 
+                placeholder="City" 
+                class="form-input" 
+                [class.error]="hasValidationError('city')"
+                [(ngModel)]="checkoutData.city" 
+                name="city" />
+              <div class="error-message" *ngIf="hasValidationError('city')">
+                {{ getValidationError('city') }}
+              </div>
+            </div>
+            <div class="form-group">
+              <select 
+                class="form-select" 
+                [class.error]="hasValidationError('country')"
+                [(ngModel)]="checkoutData.country" 
+                name="country">
+                <option value="">Select Country</option>
+                <option value="United States">United States</option>
+                <option value="Canada">Canada</option>
+                <option value="United Kingdom">United Kingdom</option>
+                <option value="Australia">Australia</option>
+                <option value="India">India</option>
+              </select>
+              <div class="error-message" *ngIf="hasValidationError('country')">
+                {{ getValidationError('country') }}
+              </div>
+            </div>
+            <div class="form-group">
+              <input 
+                type="text" 
+                placeholder="ZIP Code" 
+                class="form-input" 
+                [class.error]="hasValidationError('zipcode')"
+                [(ngModel)]="checkoutData.zipcode" 
+                name="zipcode" />
+              <div class="error-message" *ngIf="hasValidationError('zipcode')">
+                {{ getValidationError('zipcode') }}
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <input 
+              type="tel" 
+              placeholder="Phone Number (optional)" 
+              class="form-input" 
+              [class.error]="hasValidationError('phone')"
+              [(ngModel)]="checkoutData.phone" 
+              name="phone" />
+            <div class="error-message" *ngIf="hasValidationError('phone')">
+              {{ getValidationError('phone') }}
+            </div>
+          </div>
+          
+          <div class="form-options">
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="checkoutData.saveContactInfo" name="saveContactInfo" />
+              <span>Save contact information</span>
+            </label>
+          </div>
+        </form>
+        
+        <div class="step-actions">
+          <button class="continue-btn" (click)="nextStep()">Continue to shipping</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Shipping -->
+      <div class="checkout-step-content" *ngIf="currentStep === 2">
+        <h2>Shipping Method</h2>
+        <div class="shipping-options">
+          <div class="shipping-option" [class.selected]="checkoutData.shippingMethod === 'standard'" (click)="selectShipping('standard')">
+            <div class="shipping-radio">
+              <input type="radio" [checked]="checkoutData.shippingMethod === 'standard'" />
+            </div>
+            <div class="shipping-details">
+              <div class="shipping-name">Standard Shipping</div>
+              <div class="shipping-time">5-7 Business Days</div>
+                                    <div class="shipping-price">FREE (on orders over Rs 200)</div>
+            </div>
+          </div>
+          
+          <div class="shipping-option" [class.selected]="checkoutData.shippingMethod === 'express'" (click)="selectShipping('express')">
+            <div class="shipping-radio">
+              <input type="radio" [checked]="checkoutData.shippingMethod === 'express'" />
+            </div>
+            <div class="shipping-details">
+              <div class="shipping-name">Express Shipping</div>
+              <div class="shipping-time">2-3 Business Days</div>
+                                    <div class="shipping-price">Rs 30.00</div>
+            </div>
+          </div>
+          
+          <div class="shipping-option" [class.selected]="checkoutData.shippingMethod === 'overnight'" (click)="selectShipping('overnight')">
+            <div class="shipping-radio">
+              <input type="radio" [checked]="checkoutData.shippingMethod === 'overnight'" />
+            </div>
+            <div class="shipping-details">
+              <div class="shipping-name">Overnight Shipping</div>
+              <div class="shipping-time">1 Business Day</div>
+                                    <div class="shipping-price">Rs 50.00</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="step-actions">
+          <button class="back-btn" (click)="previousStep()">Back</button>
+          <button class="continue-btn" (click)="nextStep()">Continue to payment</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Payment -->
+      <div class="checkout-step-content" *ngIf="currentStep === 3">
+        <h2>Payment Method</h2>
+        <div class="payment-methods">
+          <div class="payment-method" [class.selected]="checkoutData.paymentMethod === 'card'" (click)="selectPayment('card')">
+            <i class="fas fa-credit-card"></i>
+            <span>Credit/Debit Card</span>
+          </div>
+          <div class="payment-method" [class.selected]="checkoutData.paymentMethod === 'upi'" (click)="selectPayment('upi')">
+            <i class="fas fa-mobile-alt"></i>
+            <span>UPI</span>
+          </div>
+          <div class="payment-method" [class.selected]="checkoutData.paymentMethod === 'paypal'" (click)="selectPayment('paypal')">
+            <i class="fab fa-paypal"></i>
+            <span>PayPal</span>
+          </div>
+          <div class="payment-method" [class.selected]="checkoutData.paymentMethod === 'cod'" (click)="selectPayment('cod')">
+            <i class="fas fa-money-bill"></i>
+            <span>Cash on Delivery</span>
+          </div>
+        </div>
+
+        <!-- Card Payment Form -->
+        <div class="payment-form" *ngIf="checkoutData.paymentMethod === 'card'">
+          <h3>Card Details</h3>
+          <div class="form-group">
+            <input 
+              type="text" 
+              placeholder="Cardholder Name" 
+              class="form-input" 
+              [class.error]="hasValidationError('cardholderName')"
+              [(ngModel)]="checkoutData.cardholderName" 
+              name="cardholderName" />
+            <div class="error-message" *ngIf="hasValidationError('cardholderName')">
+              {{ getValidationError('cardholderName') }}
+            </div>
+          </div>
+          <div class="form-group">
+            <input 
+              type="text" 
+              placeholder="1234 5678 9012 3456" 
+              class="form-input" 
+              [class.error]="hasValidationError('cardNumber')"
+              [(ngModel)]="checkoutData.cardNumber" 
+                             (input)="onCardNumberInput($event)"
+              maxlength="19"
+              name="cardNumber" />
+            <div class="error-message" *ngIf="hasValidationError('cardNumber')">
+              {{ getValidationError('cardNumber') }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <select 
+                class="form-select" 
+                [class.error]="hasValidationError('expiryMonth')"
+                [(ngModel)]="checkoutData.expiryMonth" 
+                name="expiryMonth">
+                <option value="">Month</option>
+                <option *ngFor="let month of monthOptions" [value]="month.value">{{ month.label }}</option>
+              </select>
+              <div class="error-message" *ngIf="hasValidationError('expiryMonth')">
+                {{ getValidationError('expiryMonth') }}
+              </div>
+            </div>
+            <div class="form-group">
+              <select 
+                class="form-select" 
+                [class.error]="hasValidationError('expiryYear')"
+                [(ngModel)]="checkoutData.expiryYear" 
+                name="expiryYear">
+                <option value="">Year</option>
+                <option *ngFor="let year of yearOptions" [value]="year">{{ year }}</option>
+              </select>
+              <div class="error-message" *ngIf="hasValidationError('expiryYear')">
+                {{ getValidationError('expiryYear') }}
+              </div>
+            </div>
+            <div class="form-group">
+              <input 
+                type="text" 
+                placeholder="CVC" 
+                class="form-input" 
+                [class.error]="hasValidationError('cvc')"
+                [(ngModel)]="checkoutData.cvc" 
+                                 (input)="onCvcInput($event)"
+                maxlength="4"
+                name="cvc" />
+              <div class="error-message" *ngIf="hasValidationError('cvc')">
+                {{ getValidationError('cvc') }}
+              </div>
+            </div>
+          </div>
+          <div class="form-options">
+            <label class="checkbox-label">
+              <input type="checkbox" [(ngModel)]="checkoutData.saveCard" name="saveCard" />
+              <span>Save card for future payments</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- UPI Payment Form -->
+        <div class="payment-form" *ngIf="checkoutData.paymentMethod === 'upi'">
+          <h3>UPI Details</h3>
+          <div class="form-group">
+            <input 
+              type="text" 
+              placeholder="your-name@upi" 
+              class="form-input" 
+              [class.error]="hasValidationError('upiId')"
+              [(ngModel)]="checkoutData.upiId" 
+              name="upiId" />
+            <div class="error-message" *ngIf="hasValidationError('upiId')">
+              {{ getValidationError('upiId') }}
+            </div>
+          </div>
+        </div>
+
+        <!-- PayPal Payment Form -->
+        <div class="payment-form" *ngIf="checkoutData.paymentMethod === 'paypal'">
+          <h3>PayPal Details</h3>
+          <div class="form-group">
+            <input 
+              type="email" 
+              placeholder="your-email@example.com" 
+              class="form-input" 
+              [class.error]="hasValidationError('paypalEmail')"
+              [(ngModel)]="checkoutData.paypalEmail" 
+              name="paypalEmail" />
+            <div class="error-message" *ngIf="hasValidationError('paypalEmail')">
+              {{ getValidationError('paypalEmail') }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Cash on Delivery Info -->
+        <div class="payment-form" *ngIf="checkoutData.paymentMethod === 'cod'">
+          <div class="cod-info">
+            <h3>Cash on Delivery</h3>
+            <p>Pay when your order is delivered to your doorstep.</p>
+                          <p><strong>Additional COD charges: Rs 30.00</strong></p>
+          </div>
+        </div>
+
+        <div class="step-actions">
+          <button class="back-btn" (click)="previousStep()">Back</button>
+          <button 
+            class="continue-btn" 
+            (click)="nextStep()" 
+            [disabled]="isProcessingOrder"
+            [class.loading]="isProcessingOrder">
+            <span *ngIf="!isProcessingOrder">
+              {{ checkoutData.paymentMethod === 'cod' ? 'Place Order' : 'Pay Rs ' + calculateTotal().toFixed(2) }}
+            </span>
+            <span *ngIf="isProcessingOrder">Processing...</span>
+          </button>
+        </div>
+        
+        <div class="payment-error" *ngIf="hasValidationError('payment')">
+          {{ getValidationError('payment') }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Summary Sidebar -->
+    <div class="order-summary">
+      <h3>Your Order</h3>
+      
+      <div class="cart-items" *ngIf="cartItems.length > 0">
+        <div class="cart-item" *ngFor="let item of cartItems">
+          <div class="item-image">
+            <img [src]="item.productImageUrl || 'assets/placeholder.png'" [alt]="item.productName" *ngIf="item.productImageUrl; else placeholder">
+            <ng-template #placeholder>
+              <div class="image-placeholder">
+                <i class="fas fa-image"></i>
+              </div>
+            </ng-template>
+          </div>
+          <div class="item-details">
+            <h4>{{ item.productName }}</h4>
+            <p>Unit Price: Rs {{ item.unitPrice }}</p>
+            <p>Qty: {{ item.quantity }}</p>
+            <p class="item-price">Total: Rs {{ item.totalPrice.toFixed(2) }}</p>
+          </div>
+          <button class="remove-btn" (click)="removeCartItem(item.id)" title="Remove item">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="empty-cart" *ngIf="cartItems.length === 0">
+        <p>Your cart is empty</p>
+        <a routerLink="/product-listing" class="continue-shopping">Continue Shopping</a>
+      </div>
+
+      <div class="order-totals" *ngIf="cartItems.length > 0">
+        <div class="total-row">
+          <span>Subtotal</span>
+          <span>Rs {{ calculateSubtotal().toFixed(2) }}</span>
+        </div>
+        <div class="total-row">
+          <span>Tax</span>
+          <span>Rs {{ calculateTax().toFixed(2) }}</span>
+        </div>
+        <div class="total-row">
+          <span>Shipping</span>
+          <span *ngIf="calculateShipping() === 0; else shippingCost">FREE</span>
+          <ng-template #shippingCost>
+            <span>Rs {{ calculateShipping().toFixed(2) }}</span>
+          </ng-template>
+        </div>
+        <div class="total-row discount" *ngIf="appliedDiscount > 0">
+          <span>Discount Applied ({{ couponCode }})</span>
+          <span class="discount-amount">-Rs {{ appliedDiscount.toFixed(2) }}</span>
+        </div>
+        <div class="total-row total">
+          <span><strong>Total</strong></span>
+          <span><strong>Rs {{ calculateTotal().toFixed(2) }}</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Order Processing / Success State -->
+<div class="order-processing" *ngIf="orderProcessed && createdOrder">
+  <div class="processing-content">
+    <div class="success-icon">✓</div>
+    <h2>Order Placed Successfully!</h2>
+    <p>Order #{{ createdOrder.id }}</p>
+    <p>Redirecting to confirmation page...</p>
+  </div>
+</div>
+

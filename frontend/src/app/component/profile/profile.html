@@ -1,0 +1,235 @@
+<div class="profile-container">
+  <div class="profile-card">
+    <div class="profile-header">
+      <div class="user-avatar">
+        <span>{{ getInitials() }}</span>
+      </div>
+      <div class="user-info">
+        <h2>{{ user?.firstName }}{{ (user?.lastName && user?.lastName !== 'User') ? ' ' + user?.lastName : '' }}</h2>
+        <p class="user-email">{{ user?.email }}</p>
+        <span class="verification-badge verified">
+          Active Account
+        </span>
+      </div>
+    </div>
+
+    <div class="profile-tabs">
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab === 'profile'"
+        (click)="setActiveTab('profile')"
+      >
+        Profile Information
+      </button>
+      <button 
+        class="tab-btn" 
+        [class.active]="activeTab === 'password'"
+        (click)="setActiveTab('password')"
+      >
+        Change Password
+      </button>
+    </div>
+
+    <!-- Profile Information Tab -->
+    <div class="tab-content" *ngIf="activeTab === 'profile'">
+      <form [formGroup]="profileForm" (ngSubmit)="updateProfile()" class="profile-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input 
+            type="text" 
+            id="name"
+            formControlName="name"
+            class="form-input"
+            [class.error]="profileForm.get('name')?.invalid && profileForm.get('name')?.touched"
+          >
+          <div class="error-message" *ngIf="profileForm.get('name')?.invalid && profileForm.get('name')?.touched">
+            <span *ngIf="profileForm.get('name')?.errors?.['required']">Name is required</span>
+            <span *ngIf="profileForm.get('name')?.errors?.['minlength']">Name must be at least 2 characters</span>
+            <span *ngIf="profileForm.get('name')?.errors?.['pattern']">Name can only contain letters and spaces</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input 
+            type="email" 
+            id="email"
+            formControlName="email"
+            class="form-input"
+            [class.error]="profileForm.get('email')?.invalid && profileForm.get('email')?.touched"
+          >
+          <div class="error-message" *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched">
+            <span *ngIf="profileForm.get('email')?.errors?.['required']">Email is required</span>
+            <span *ngIf="profileForm.get('email')?.errors?.['pattern']">Please enter a valid email address</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phoneNumber">Phone Number</label>
+          <input 
+            type="tel" 
+            id="phoneNumber"
+            formControlName="phoneNumber"
+            class="form-input"
+            [class.error]="profileForm.get('phoneNumber')?.invalid && profileForm.get('phoneNumber')?.touched"
+          >
+          <div class="error-message" *ngIf="profileForm.get('phoneNumber')?.invalid && profileForm.get('phoneNumber')?.touched">
+            <span *ngIf="profileForm.get('phoneNumber')?.errors?.['required']">Phone number is required</span>
+            <span *ngIf="profileForm.get('phoneNumber')?.errors?.['pattern']">Phone number must be exactly 10 digits</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea 
+            id="address"
+            formControlName="address"
+            class="form-input"
+            rows="3"
+            [class.error]="profileForm.get('address')?.invalid && profileForm.get('address')?.touched"
+          ></textarea>
+          <div class="error-message" *ngIf="profileForm.get('address')?.invalid && profileForm.get('address')?.touched">
+            <span *ngIf="profileForm.get('address')?.errors?.['required']">Address is required</span>
+            <span *ngIf="profileForm.get('address')?.errors?.['minlength']">Address must be at least 10 characters</span>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button 
+            type="button" 
+            class="btn-secondary"
+            (click)="resetForm()"
+            [disabled]="isLoading"
+          >
+            Reset
+          </button>
+          <button 
+            type="submit" 
+            class="btn-primary"
+            [disabled]="profileForm.invalid || isLoading"
+          >
+            {{ isLoading ? 'Updating...' : 'Update Profile' }}
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Change Password Tab -->
+    <div class="tab-content" *ngIf="activeTab === 'password'">
+      <form [formGroup]="passwordForm" (ngSubmit)="changePassword()" class="password-form">
+        <div class="form-group">
+          <label for="currentPassword">Current Password</label>
+          <div class="password-input-container">
+            <input 
+              [type]="showCurrentPassword ? 'text' : 'password'"
+              id="currentPassword"
+              formControlName="currentPassword"
+              class="form-input"
+              [class.error]="passwordForm.get('currentPassword')?.invalid && passwordForm.get('currentPassword')?.touched"
+            >
+            <button 
+              type="button" 
+              class="password-toggle-btn"
+              (click)="toggleCurrentPasswordVisibility()"
+              [attr.aria-label]="showCurrentPassword ? 'Hide password' : 'Show password'"
+            >
+              <svg *ngIf="!showCurrentPassword" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg *ngIf="showCurrentPassword" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+          <div class="error-message" *ngIf="passwordForm.get('currentPassword')?.invalid && passwordForm.get('currentPassword')?.touched">
+            <span *ngIf="passwordForm.get('currentPassword')?.errors?.['required']">Current password is required</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="newPassword">New Password</label>
+          <div class="password-input-container">
+            <input 
+              [type]="showNewPassword ? 'text' : 'password'"
+              id="newPassword"
+              formControlName="newPassword"
+              class="form-input"
+              [class.error]="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched"
+            >
+            <button 
+              type="button" 
+              class="password-toggle-btn"
+              (click)="toggleNewPasswordVisibility()"
+              [attr.aria-label]="showNewPassword ? 'Hide password' : 'Show password'"
+            >
+              <svg *ngIf="!showNewPassword" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg *ngIf="showNewPassword" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+          <div class="error-message" *ngIf="passwordForm.get('newPassword')?.invalid && passwordForm.get('newPassword')?.touched">
+            <span *ngIf="passwordForm.get('newPassword')?.errors?.['required']">New password is required</span>
+            <span *ngIf="passwordForm.get('newPassword')?.errors?.['minlength']">Password must be at least 6 characters</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmNewPassword">Confirm New Password</label>
+          <div class="password-input-container">
+            <input 
+              [type]="showConfirmNewPassword ? 'text' : 'password'"
+              id="confirmNewPassword"
+              formControlName="confirmNewPassword"
+              class="form-input"
+              [class.error]="passwordForm.get('confirmNewPassword')?.invalid && passwordForm.get('confirmNewPassword')?.touched"
+            >
+            <button 
+              type="button" 
+              class="password-toggle-btn"
+              (click)="toggleConfirmNewPasswordVisibility()"
+              [attr.aria-label]="showConfirmNewPassword ? 'Hide password' : 'Show password'"
+            >
+              <svg *ngIf="!showConfirmNewPassword" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <svg *ngIf="showConfirmNewPassword" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+            </button>
+          </div>
+          <div class="error-message" *ngIf="passwordForm.get('confirmNewPassword')?.invalid && passwordForm.get('confirmNewPassword')?.touched">
+            <span *ngIf="passwordForm.get('confirmNewPassword')?.errors?.['required']">Please confirm your new password</span>
+            <span *ngIf="passwordForm.get('confirmNewPassword')?.errors?.['passwordMismatch']">Passwords do not match</span>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button 
+            type="button" 
+            class="btn-secondary"
+            (click)="resetPasswordForm()"
+            [disabled]="isPasswordLoading"
+          >
+            Reset
+          </button>
+          <button 
+            type="submit" 
+            class="btn-primary"
+            [disabled]="passwordForm.invalid || isPasswordLoading"
+          >
+            {{ isPasswordLoading ? 'Changing...' : 'Change Password' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> 

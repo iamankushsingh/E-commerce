@@ -1,0 +1,197 @@
+<div class="cart-container">
+  <div class="cart-content">
+    <div class="cart-items-section">
+      <div class="cart-header">
+        <h2>Your cart</h2>
+      </div>
+      
+      <div class="continue-shopping" *ngIf="cartService.cartItems().length > 0">
+        <span>Not ready to checkout? </span>
+        <a routerLink="/product-listing" class="continue-link">Continue Shopping</a>
+      </div>
+      
+      <div class="empty-cart" *ngIf="cartService.cartItems().length === 0">
+        <div class="empty-cart-icon">🛒</div>
+        <p>Your cart is empty</p>
+        <p class="empty-cart-subtitle">Add some amazing products to get started!</p>
+        <a routerLink="/product-listing" class="continue-link primary-cta">Start Shopping</a>
+      </div>
+    
+      <div class="cart-items" *ngIf="cartService.cartItems().length > 0">
+        <div class="cart-item" *ngFor="let item of cartService.cartItems(); trackBy: trackByItemId">
+          <div class="item-image">
+            <img 
+              [src]="item.productImageUrl || 'assets/placeholder.png'" 
+              [alt]="item.productName" 
+              (error)="onImageError($event)"
+              loading="lazy">
+          </div>
+          <div class="item-details">
+            <h3 class="item-name">{{item.productName}}</h3>
+            <div class="item-meta">
+              <p class="item-price-unit">Unit Price: ₹{{item.unitPrice.toFixed(2)}}</p>
+              <p class="item-id">Product ID: #{{item.productId}}</p>
+            </div>
+            <div class="quantity-controls" role="group" [attr.aria-label]="'Quantity controls for ' + item.productName">
+              <button 
+                class="quantity-btn decrease" 
+                (click)="updateQuantity(item.id, -1)"
+                [attr.aria-label]="'Decrease quantity for ' + item.productName"
+                [disabled]="item.quantity <= 1">
+                −
+              </button>
+              <span class="quantity-display" role="status" [attr.aria-label]="'Current quantity: ' + item.quantity">
+                {{item.quantity}}
+              </span>
+              <button 
+                class="quantity-btn increase" 
+                (click)="updateQuantity(item.id, 1)"
+                [attr.aria-label]="'Increase quantity for ' + item.productName">
+                +
+              </button>
+            </div>
+            <div class="item-pricing">
+              <p class="item-price">Total: ₹{{item.totalPrice.toFixed(2)}}</p>
+            </div>
+          </div>
+          <div class="item-actions">
+            <button 
+              class="remove-btn" 
+              (click)="removeItem(item.id)"
+              [attr.aria-label]="'Remove ' + item.productName + ' from cart'">
+              🗑️ Remove
+            </button>
+          </div>
+        </div>
+        
+        <div class="cart-summary-line">
+          <div class="items-count">
+            <span class="count-badge">{{cartService.cartItems().length}}</span>
+            <span>{{cartService.cartItems().length === 1 ? 'Item' : 'Items'}} in cart</span>
+          </div>
+          <div class="total-items">
+            <span>Total Quantity: {{cartService.cartItemCount()}}</span>
+          </div>
+        </div>
+        
+        <div class="clear-cart-section" *ngIf="cartService.cartItems().length > 0">
+          <button 
+            class="clear-cart-btn" 
+            (click)="clearCart()"
+            aria-label="Clear all items from cart">
+            Clear Cart
+          </button>
+        </div>
+      </div>
+      
+      <div class="order-info" *ngIf="cartService.cartItems().length > 0">
+        <h3>📋 Order Information</h3>
+        <div class="expandable-section">
+          <div class="section-header" (click)="toggleReturnPolicy()" role="button" tabindex="0">
+            <span>🔄 Return Policy</span>
+            <span class="expand-icon">{{returnPolicyExpanded ? '−' : '+'}}</span>
+          </div>
+          <div class="section-content" *ngIf="returnPolicyExpanded">
+            <ul class="policy-list">
+              <li><strong>Window:</strong> 14 days from the date of delivery.</li>
+              <li><strong>Condition:</strong> Unused, unwashed, with original tags and packaging.</li>
+              <li><strong>Refunds:</strong> To original payment method within 5–7 business days after inspection.</li>
+              <li><strong>Exchanges:</strong> Subject to stock availability. Shipping charges are non-refundable.</li>
+              <li><strong>How to start:</strong> Contact support with your order ID and reason for return.</li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="expandable-section">
+          <div class="section-header" (click)="toggleDeliveryCharges()" role="button" tabindex="0">
+            <span>🚚 Delivery Service Charges</span>
+            <span class="expand-icon">{{deliveryChargesExpanded ? '−' : '+'}}</span>
+          </div>
+          <div class="section-content" *ngIf="deliveryChargesExpanded">
+            <div class="delivery-info">
+              <p><strong>Free Delivery:</strong> Orders ₹200 and above</p>
+              <p><strong>Delivery Charge:</strong> ₹30 for orders below ₹200</p>
+              <p><strong>Estimated Delivery:</strong> 3-5 business days</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="order-summary" *ngIf="cartService.cartItems().length > 0">
+      <h3>💰 Order Summary</h3>
+      
+      <div class="coupon-section">
+        <h4>🎫 Apply Coupon</h4>
+        <div class="coupon-input-group">
+          <input 
+            type="text" 
+            [(ngModel)]="couponCode" 
+            placeholder="Enter coupon code (e.g., ABOVE400)"
+            class="coupon-input"
+            maxlength="20">
+          <button 
+            class="apply-coupon-btn" 
+            (click)="applyCoupon()"
+            [disabled]="!couponCode.trim()">
+            Apply
+          </button>
+        </div>
+        <div class="coupon-message" *ngIf="couponMessage" 
+             [class.success]="couponApplied" 
+             [class.error]="!couponApplied"
+             role="status">
+          {{couponMessage}}
+        </div>
+        <div class="coupon-hints">
+          <p><strong>Available Coupons:</strong></p>
+          <ul>
+            <li>ABOVE400 - ₹40 off on orders ₹400+</li>
+            <li>ABOVE1000 - ₹100 off on orders ₹1000+</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="summary-breakdown">
+        <div class="summary-line">
+          <span>Subtotal ({{cartService.cartItemCount()}} items)</span>
+          <span class="price">₹{{getSubtotal().toFixed(2)}}</span>
+        </div>
+        
+        <div class="summary-line">
+          <span>Delivery Charge</span>
+          <span class="price" [class.free]="getDeliveryCharge() === 0">
+            {{getDeliveryCharge() === 0 ? 'FREE' : '₹' + getDeliveryCharge().toFixed(2)}}
+          </span>
+        </div>
+        
+        <div class="summary-line" *ngIf="getTax() > 0">
+          <span>Tax (5%)</span>
+          <span class="price">₹{{getTax().toFixed(2)}}</span>
+        </div>
+        
+        <div class="summary-line" *ngIf="appliedDiscount > 0">
+          <span>Discount Applied</span>
+          <span class="price discount">−₹{{appliedDiscount.toFixed(2)}}</span>
+        </div>
+      </div>
+      
+      <div class="summary-line total-line">
+        <span>Total Amount</span>
+        <span class="price total-price">₹{{getTotal().toFixed(2)}}</span>
+      </div>
+      
+      <div class="savings-info" *ngIf="getDeliveryCharge() === 0 && getSubtotal() >= 200">
+        <span class="savings-badge">🎉 You saved ₹30 on delivery!</span>
+      </div>
+      
+      <button 
+        class="checkout-btn" 
+        (click)="onCheckout()"
+        [attr.aria-label]="'Proceed to checkout with total amount ₹' + getTotal().toFixed(2)">
+        🛒 Continue to Checkout
+      </button>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,211 @@
+<div class="order-confirmation-container" *ngIf="!isLoading">
+  <!-- Success Header -->
+  <div class="success-header" *ngIf="order">
+    <div class="success-icon">✓</div>
+    <h1>Order Placed Successfully!</h1>
+    <p class="order-number">Order #{{ order.id }}</p>
+    <p class="confirmation-message">
+      Thank you for your order! We've received your payment and your order is being processed.
+    </p>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Loading order details...</p>
+  </div>
+
+  <!-- Error State - Order Not Found -->
+  <div *ngIf="!isLoading && !order" class="error-container">
+    <div class="error-icon">⚠️</div>
+    <h2>Order Not Found</h2>
+    <p>We couldn't find the order you're looking for. It may have been removed or the link may be incorrect.</p>
+    <div class="error-actions">
+      <a routerLink="/my-orders" class="btn btn-primary">View All Orders</a>
+      <a routerLink="/home" class="btn btn-outline">Back to Home</a>
+    </div>
+  </div>
+
+  <!-- Order Details -->
+  <div class="order-details" *ngIf="!isLoading && order">
+    <div class="details-grid">
+      <!-- Order Summary -->
+      <div class="order-summary-section">
+        <h3>Order Summary</h3>
+        <div class="order-items">
+          <div class="order-item" *ngFor="let item of order.items">
+            <div class="item-image">
+              <img [src]="item.image" [alt]="item.name" *ngIf="item.image; else placeholderImg">
+              <ng-template #placeholderImg>
+                <div class="image-placeholder">
+                  <i class="fas fa-image"></i>
+                </div>
+              </ng-template>
+            </div>
+            <div class="item-details">
+              <h4>{{ item.name }}</h4>
+              <p class="item-variant">Size: {{ item.size }}, Color: {{ item.color }}</p>
+              <p class="item-quantity">Qty: {{ item.quantity }}</p>
+            </div>
+            <div class="item-price">
+              <span>Rs {{ item.price * item.quantity }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-totals">
+          <div class="total-row">
+            <span>Subtotal:</span>
+            <span>Rs {{ (order.totalAmount - (order.totalAmount * 0.08) - (order.shippingCost || 0) + (order.discountAmount || 0)).toFixed(2) }}</span>
+          </div>
+          <div class="total-row">
+            <span>Tax:</span>
+            <span>Rs {{ (order.totalAmount * 0.08).toFixed(2) }}</span>
+          </div>
+          <div class="total-row">
+            <span>Shipping:</span>
+            <span *ngIf="order.shippingCost === 0; else shippingCost">FREE</span>
+            <ng-template #shippingCost>
+              <span>Rs {{ order.shippingCost.toFixed(2) }}</span>
+            </ng-template>
+          </div>
+          <div class="total-row discount" *ngIf="order.discountAmount && order.discountAmount > 0">
+            <span>Discount Applied ({{ order.couponCode }})</span>
+            <span class="discount-amount">-Rs {{ order.discountAmount.toFixed(2) }}</span>
+          </div>
+          <div class="total-row total">
+            <span><strong>Total:</strong></span>
+            <span><strong>Rs {{ order.totalAmount.toFixed(2) }}</strong></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shipping & Tracking Info -->
+      <div class="shipping-info-section">
+        <h3>Shipping & Tracking</h3>
+        
+        <!-- Order Status -->
+        <div class="status-section">
+          <div class="status-badge" [style.background-color]="getOrderStatusColor()">
+            {{ getOrderStatusText() }}
+          </div>
+          <p class="status-description">
+            <span *ngIf="order.orderStatus === 'pending'">Your order is being processed and will ship soon.</span>
+            <span *ngIf="order.orderStatus === 'confirmed'">Your order has been confirmed and is being prepared.</span>
+            <span *ngIf="order.orderStatus === 'processing'">Your order is being prepared for shipment.</span>
+            <span *ngIf="order.orderStatus === 'shipped'">Your order is on its way!</span>
+            <span *ngIf="order.orderStatus === 'delivered'">Your order has been delivered.</span>
+          </p>
+        </div>
+
+        <!-- Tracking Information -->
+        <div class="tracking-info" *ngIf="order.trackingNumber">
+          <h4>Tracking Information</h4>
+          <p class="tracking-number">Tracking #: <strong>{{ order.trackingNumber }}</strong></p>
+          <p class="estimated-delivery">
+            Estimated Delivery: <strong>{{ getEstimatedDeliveryDate() }}</strong>
+          </p>
+        </div>
+
+        <!-- Shipping Address -->
+        <div class="address-info">
+          <h4>Shipping Address</h4>
+          <div class="address">
+            <p>{{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}</p>
+            <p>{{ order.shippingAddress.address }}</p>
+            <p *ngIf="order.shippingAddress.apartment">{{ order.shippingAddress.apartment }}</p>
+            <p>{{ order.shippingAddress.city }}, {{ order.shippingAddress.country }} {{ order.shippingAddress.zipcode }}</p>
+            <p *ngIf="order.shippingAddress.phone">{{ order.shippingAddress.phone }}</p>
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="payment-info">
+          <h4>Payment Method</h4>
+          <p *ngIf="order.paymentDetails.method === 'card'">
+            Card ending in {{ order.paymentDetails.cardNumber?.slice(-4) }}
+          </p>
+          <p *ngIf="order.paymentDetails.method === 'upi'">
+            UPI: {{ order.paymentDetails.upiId }}
+          </p>
+          <p *ngIf="order.paymentDetails.method === 'paypal'">
+            PayPal: {{ order.paymentDetails.paypalEmail }}
+          </p>
+          <p *ngIf="order.paymentDetails.method === 'cod'">
+            Cash on Delivery
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons" *ngIf="!isLoading && order">
+    <button class="btn btn-primary" (click)="goToOrderTracking()">
+      Track Your Order
+    </button>
+    <button class="btn btn-secondary" (click)="printOrder()">
+      Print Order
+    </button>
+    <button class="btn btn-secondary" (click)="downloadOrderPDF()">
+      Download PDF
+    </button>
+    <a routerLink="/product-listing" class="btn btn-outline">Continue Shopping</a>
+  </div>
+
+  <!-- Order Confirmation Details -->
+  <div class="confirmation-details" *ngIf="!isLoading && order">
+    <div class="details-card">
+      <h3>What happens next?</h3>
+      <ul class="next-steps">
+        <li>
+          <span class="step-icon">📧</span>
+          <div class="step-content">
+            <strong>Email Confirmation</strong>
+            <p>You'll receive an email confirmation shortly with your order details.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-icon">📦</span>
+          <div class="step-content">
+            <strong>Processing</strong>
+            <p>We'll prepare your items for shipment within 1-2 business days.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-icon">🚚</span>
+          <div class="step-content">
+            <strong>Shipping</strong>
+            <p>You'll receive tracking information once your order ships.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-icon">✅</span>
+          <div class="step-content">
+            <strong>Delivery</strong>
+            <p>Your order will arrive by {{ getEstimatedDeliveryDate() }}.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="help-section">
+      <h4>Need Help?</h4>
+      <p>If you have any questions about your order, please contact our customer service team.</p>
+      <div class="help-links">
+        <a href="mailto:support@example.com" class="help-link">
+          📧 support@example.com
+        </a>
+        <a href="tel:+1234567890" class="help-link">
+          📞 (123) 456-7890
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div class="loading-container" *ngIf="isLoading">
+  <div class="loading-spinner"></div>
+  <p>Loading order details...</p>
+</div> 

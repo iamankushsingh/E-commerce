@@ -1,0 +1,277 @@
+<div class="order-tracking-container" *ngIf="!isLoading">
+  <!-- Tracking Header -->
+  <div class="tracking-header" *ngIf="order">
+    <div class="header-content">
+      <h1>Track Your Order</h1>
+      <div class="order-info">
+        <span class="order-number">Order #{{ order.id }}</span>
+        <span class="order-date">Placed on {{ order.orderDate | date:'mediumDate' }}</span>
+      </div>
+    </div>
+    
+    <div class="header-actions">
+      <button class="btn btn-outline" (click)="goToOrderDetails()">
+        View Order Details
+      </button>
+      <button 
+        class="btn btn-danger" 
+        *ngIf="canCancelOrder()" 
+        (click)="cancelOrder()">
+        Cancel Order
+      </button>
+    </div>
+  </div>
+
+  <!-- Current Status Overview -->
+  <div class="status-overview" *ngIf="order && orderTracking">
+    <div class="status-card">
+      <div class="status-icon" [style.background-color]="getOrderStatusColor()">
+        <i class="fas fa-package" *ngIf="order.orderStatus === 'pending'"></i>
+        <i class="fas fa-check-circle" *ngIf="order.orderStatus === 'confirmed'"></i>
+        <i class="fas fa-cog fa-spin" *ngIf="order.orderStatus === 'processing'"></i>
+        <i class="fas fa-truck" *ngIf="order.orderStatus === 'shipped'"></i>
+        <i class="fas fa-home" *ngIf="order.orderStatus === 'delivered'"></i>
+        <i class="fas fa-times-circle" *ngIf="order.orderStatus === 'cancelled'"></i>
+      </div>
+      
+      <div class="status-info">
+        <h3>{{ getOrderStatusText() }}</h3>
+        <p class="tracking-number" *ngIf="orderTracking.trackingNumber">
+          Tracking: <strong>{{ orderTracking.trackingNumber }}</strong>
+        </p>
+        <p class="estimated-delivery" *ngIf="order.orderStatus !== 'delivered' && order.orderStatus !== 'cancelled'">
+          Estimated delivery: <strong>{{ getEstimatedDeliveryDate() }}</strong>
+        </p>
+        <p class="delivered-date" *ngIf="order.orderStatus === 'delivered'">
+          Delivered on {{ getEstimatedDeliveryDate() }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress Timeline -->
+  <div class="progress-timeline" *ngIf="order && order.orderStatus !== 'cancelled'">
+    <h3>Order Progress</h3>
+    <div class="timeline">
+      <div class="timeline-item" 
+           [class.completed]="isStatusCompleted('pending')"
+           [class.current]="isStatusCurrent('pending')">
+        <div class="timeline-marker">
+          <i class="fas fa-receipt"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>Order Placed</h4>
+          <p>Your order has been received and is being processed.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" 
+           [class.completed]="isStatusCompleted('confirmed')"
+           [class.current]="isStatusCurrent('confirmed')">
+        <div class="timeline-marker">
+          <i class="fas fa-credit-card"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>Payment Confirmed</h4>
+          <p>Payment has been processed successfully.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" 
+           [class.completed]="isStatusCompleted('processing')"
+           [class.current]="isStatusCurrent('processing')">
+        <div class="timeline-marker">
+          <i class="fas fa-box"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>Being Prepared</h4>
+          <p>Your items are being picked and packed.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" 
+           [class.completed]="isStatusCompleted('shipped')"
+           [class.current]="isStatusCurrent('shipped')">
+        <div class="timeline-marker">
+          <i class="fas fa-truck"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>Shipped</h4>
+          <p>Your order is on its way to you!</p>
+        </div>
+      </div>
+
+      <div class="timeline-item" 
+           [class.completed]="isStatusCompleted('delivered')"
+           [class.current]="isStatusCurrent('delivered')">
+        <div class="timeline-marker">
+          <i class="fas fa-home"></i>
+        </div>
+        <div class="timeline-content">
+          <h4>Delivered</h4>
+          <p>Your order has been delivered successfully.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cancelled Order Message -->
+  <div class="cancelled-message" *ngIf="order && order.orderStatus === 'cancelled'">
+    <div class="cancelled-icon">
+      <i class="fas fa-times-circle"></i>
+    </div>
+    <h3>Order Cancelled</h3>
+    <p>This order has been cancelled. If you have any questions, please contact our customer service.</p>
+  </div>
+
+  <!-- Detailed Tracking History -->
+  <div class="tracking-history" *ngIf="orderTracking && orderTracking.statusHistory.length > 0">
+    <h3>Tracking History</h3>
+    <div class="history-timeline">
+      <div class="history-item" *ngFor="let historyItem of orderTracking.statusHistory; trackBy: trackHistoryItem">
+        <div class="history-date">
+          <span class="date">{{ formatDateTime(historyItem.timestamp) }}</span>
+        </div>
+        <div class="history-marker">
+          <div class="marker-dot" [style.background-color]="getOrderStatusColor()"></div>
+        </div>
+        <div class="history-content">
+          <h4>{{ historyItem.description }}</h4>
+          <p class="location" *ngIf="historyItem.location">
+            <i class="fas fa-map-marker-alt"></i> {{ historyItem.location }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Items Summary -->
+  <div class="order-items-summary" *ngIf="order">
+    <h3>Items in this Order</h3>
+    <div class="items-grid">
+      <div class="item-card" *ngFor="let item of order.items">
+        <div class="item-image">
+          <img [src]="item.image" [alt]="item.name" *ngIf="item.image; else placeholderImg">
+          <ng-template #placeholderImg>
+            <div class="image-placeholder">
+              <i class="fas fa-image"></i>
+            </div>
+          </ng-template>
+        </div>
+        <div class="item-details">
+          <h4>{{ item.name }}</h4>
+          <p class="item-variants" *ngIf="item.size !== 'N/A' || item.color !== 'N/A'">
+            <span *ngIf="item.size !== 'N/A'">Size: {{ item.size }}</span>
+            <span *ngIf="item.size !== 'N/A' && item.color !== 'N/A'"> • </span>
+            <span *ngIf="item.color !== 'N/A'">Color: {{ item.color }}</span>
+          </p>
+          <p class="item-quantity">Qty: {{ item.quantity }}</p>
+          <p class="item-price"><strong>Rs {{ (item.price * item.quantity).toFixed(2) }}</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delivery Address -->
+  <div class="delivery-info" *ngIf="order">
+    <div class="info-section">
+      <h4>
+        <i class="fas fa-map-marker-alt"></i>
+        Delivery Address
+      </h4>
+      <div class="address">
+        <p><strong>{{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}</strong></p>
+        <p>{{ order.shippingAddress.address }}</p>
+        <p *ngIf="order.shippingAddress.apartment">{{ order.shippingAddress.apartment }}</p>
+        <p>{{ order.shippingAddress.city }}<span *ngIf="order.shippingAddress.city && (order.shippingAddress.country || order.shippingAddress.zipcode)">, </span>{{ order.shippingAddress.country }} {{ order.shippingAddress.zipcode }}</p>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h4>
+        <i class="fas fa-phone"></i>
+        Contact Information
+      </h4>
+      <p *ngIf="order.shippingAddress.phone"><strong>Phone:</strong> {{ order.shippingAddress.phone }}</p>
+      <p *ngIf="!order.shippingAddress.phone">No phone number provided</p>
+    </div>
+
+    <div class="info-section" *ngIf="order.paymentDetails">
+      <h4>
+        <i class="fas fa-credit-card"></i>
+        Payment Information
+      </h4>
+      <p><strong>Method:</strong> {{ getPaymentMethodDisplay(order.paymentDetails.method) }}</p>
+      <p *ngIf="order.paymentDetails.method === 'card'"><strong>Card:</strong> {{ order.paymentDetails.cardNumber || '**** **** **** ****' }}</p>
+      <p *ngIf="order.paymentDetails.method === 'upi'"><strong>UPI ID:</strong> {{ order.paymentDetails.upiId || 'N/A' }}</p>
+    </div>
+
+    <div class="info-section">
+      <h4>
+        <i class="fas fa-rupee-sign"></i>
+        Order Summary
+      </h4>
+      <div class="order-totals">
+        <div class="total-row">
+          <span>Subtotal:</span>
+          <span>Rs {{ (order.totalAmount - (order.shippingCost || 0) + (order.discountAmount || 0)).toFixed(2) }}</span>
+        </div>
+        <div class="total-row" *ngIf="order.shippingCost && order.shippingCost > 0">
+          <span>Shipping:</span>
+          <span>Rs {{ order.shippingCost.toFixed(2) }}</span>
+        </div>
+        <div class="total-row" *ngIf="order.shippingCost === 0">
+          <span>Shipping:</span>
+          <span><strong>FREE</strong></span>
+        </div>
+        <div class="total-row discount" *ngIf="order.discountAmount && order.discountAmount > 0">
+          <span>Discount Applied ({{ order.couponCode }})</span>
+          <span class="discount-amount">-Rs {{ order.discountAmount.toFixed(2) }}</span>
+        </div>
+        <div class="total-row total">
+          <span><strong>Total:</strong></span>
+          <span><strong>Rs {{ order.totalAmount.toFixed(2) }}</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Help Section -->
+  <div class="help-section">
+    <h3>Need Help?</h3>
+    <div class="help-options">
+      <div class="help-option">
+        <i class="fas fa-headset"></i>
+        <div class="help-content">
+          <h4>Contact Support</h4>
+          <p>Get help with your order</p>
+          <a href="mailto:support@example.com">support@example.com</a>
+        </div>
+      </div>
+      
+      <div class="help-option">
+        <i class="fas fa-undo"></i>
+        <div class="help-content">
+          <h4>Return Policy</h4>
+          <p>30-day return policy</p>
+          <a href="/returns">Learn more</a>
+        </div>
+      </div>
+
+      <div class="help-option">
+        <i class="fas fa-question-circle"></i>
+        <div class="help-content">
+          <h4>FAQ</h4>
+          <p>Common questions answered</p>
+          <a href="/faq">View FAQ</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div class="loading-container" *ngIf="isLoading">
+  <div class="loading-spinner"></div>
+  <p>Loading tracking information...</p>
+</div> 
